@@ -4,10 +4,20 @@ public abstract class Item {
 
 	int itemId;
 	
+	boolean heal;
+	
+	StatUsed sUsed;
 	DamageDice dDice;
 	
-	public Item(DamageDice pD) {
-		dDice = pD;
+	public Item() {
+		
+	}
+
+	public Item(boolean heal, StatUsed sUsed, DamageDice dDice) {
+		super();
+		this.heal = heal;
+		this.sUsed = sUsed;
+		this.dDice = dDice;
 	}
 	
 }

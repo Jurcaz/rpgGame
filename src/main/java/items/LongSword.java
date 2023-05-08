@@ -1,11 +1,13 @@
-package source;
+package items;
+
+import source.DamageDice;
+import source.Item;
+import source.StatUsed;
 
 public class LongSword extends Item {
 
-	public LongSword(DamageDice pD) {
-		super(pD);
-		// TODO Auto-generated constructor stub
+	public LongSword() {
+		super(false, StatUsed.STR, DamageDice.D8);
 	}
-
 	
 }
