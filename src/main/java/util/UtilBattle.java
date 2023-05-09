@@ -95,7 +95,7 @@ public class UtilBattle {
 		}
 	
 		public static void attackCreature(Creature c1, Creature c2) {
-			c2.setActualHp(c1.attack());
+			if(c1.hit() >= c2.getArmor().getAc()) c2.setActualHp(c1.attack());
 		}
 	
 }

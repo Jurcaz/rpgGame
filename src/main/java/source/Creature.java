@@ -53,6 +53,24 @@ public abstract class Creature {
 		this.iniciative = UtilBattle.dVeinte()+UtilBattle.obtenBon(this.dexPunt)+(UtilBattle.obtenBon(this.dexPunt)*0.1)+(UtilBattle.dDiez()*0.01);
 	}
 	
+	public int hit() {
+		switch (this.weapon.getsUsed()) {
+		case STR:
+			return UtilBattle.dVeinte()+UtilBattle.obtenBon(strPunt);
+		case DEX:
+			return UtilBattle.dVeinte()+UtilBattle.obtenBon(dexPunt);
+		case CON:
+			return UtilBattle.dVeinte()+UtilBattle.obtenBon(conPunt);
+		case INT:
+			return UtilBattle.dVeinte()+UtilBattle.obtenBon(intPunt);
+		case SAB:
+			return UtilBattle.dVeinte()+UtilBattle.obtenBon(sabPunt);
+		case CHA:
+			return UtilBattle.dVeinte()+UtilBattle.obtenBon(chaPunt);
+		}
+		return 0;
+	}
+	
 	public int attack() {
 		switch (this.weapon.getsUsed()) {
 		case STR:
