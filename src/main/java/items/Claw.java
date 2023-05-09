@@ -4,9 +4,9 @@ import source.DamageDice;
 import source.Item;
 import source.StatUsed;
 
-public class Staf extends Item {
+public class Claw extends Item {
 
-	public Staf() {
-		super(true, 0, StatUsed.SAB, DamageDice.D6);
+	public Claw() {
+		super(false, 0, StatUsed.STR, DamageDice.D6);
 	}
 }

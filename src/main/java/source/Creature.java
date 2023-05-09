@@ -49,16 +49,142 @@ public abstract class Creature {
 		this.armor = armor;
 	}
 	
-	public void setIniciative(double iniP) {
-		this.iniciative = iniP;
-	}
-	
-	public double getIniciative() {
-		return this.iniciative;
-	}
-	
 	public void rollIniciative() {
 		this.iniciative = UtilBattle.dVeinte()+UtilBattle.obtenBon(this.dexPunt)+(UtilBattle.obtenBon(this.dexPunt)*0.1)+(UtilBattle.dDiez()*0.01);
 	}
+	
+	public int attack() {
+		switch (this.weapon.getsUsed()) {
+		case STR:
+			if(this.weapon.isHeal()) {
+				return UtilBattle.obtenBon(strPunt)+this.weapon.rollDice();
+			} else {
+				return -1*(UtilBattle.obtenBon(strPunt)+this.weapon.rollDice());
+			}
+		case DEX:
+			if(this.weapon.isHeal()) {
+				return UtilBattle.obtenBon(dexPunt)+this.weapon.rollDice();
+			} else {
+				return -1*(UtilBattle.obtenBon(dexPunt)+this.weapon.rollDice());
+			}
+		case CON:
+			if(this.weapon.isHeal()) {
+				return UtilBattle.obtenBon(conPunt)+this.weapon.rollDice();
+			} else {
+				return -1*(UtilBattle.obtenBon(conPunt)+this.weapon.rollDice());
+			}
+		case INT:
+			if(this.weapon.isHeal()) {
+				return UtilBattle.obtenBon(intPunt)+this.weapon.rollDice();
+			} else {
+				return -1*(UtilBattle.obtenBon(intPunt)+this.weapon.rollDice());
+			}
+		case SAB:
+			if(this.weapon.isHeal()) {
+				return UtilBattle.obtenBon(sabPunt)+this.weapon.rollDice();
+			} else {
+				return -1*(UtilBattle.obtenBon(sabPunt)+this.weapon.rollDice());
+			}
+		case CHA:
+			if(this.weapon.isHeal()) {
+				return UtilBattle.obtenBon(chaPunt)+this.weapon.rollDice();
+			} else {
+				return -1*(UtilBattle.obtenBon(chaPunt)+this.weapon.rollDice());
+			}
+		}
+		return 0;
+	}
+	
+
+	public int getMaxHp() {
+		return maxHp;
+	}
+
+	public void setMaxHp(int maxHp) {
+		this.maxHp = maxHp;
+	}
+
+	public int getActualHp() {
+		return actualHp;
+	}
+
+	public void setActualHp(int actualHp) {
+		this.actualHp = this.actualHp + actualHp;
+	}
+
+	public double getIniciative() {
+		return iniciative;
+	}
+
+	public void setIniciative(double iniciative) {
+		this.iniciative = iniciative;
+	}
+
+	public int getStrPunt() {
+		return strPunt;
+	}
+
+	public void setStrPunt(int strPunt) {
+		this.strPunt = strPunt;
+	}
+
+	public int getDexPunt() {
+		return dexPunt;
+	}
+
+	public void setDexPunt(int dexPunt) {
+		this.dexPunt = dexPunt;
+	}
+
+	public int getConPunt() {
+		return conPunt;
+	}
+
+	public void setConPunt(int conPunt) {
+		this.conPunt = conPunt;
+	}
+
+	public int getIntPunt() {
+		return intPunt;
+	}
+
+	public void setIntPunt(int intPunt) {
+		this.intPunt = intPunt;
+	}
+
+	public int getSabPunt() {
+		return sabPunt;
+	}
+
+	public void setSabPunt(int sabPunt) {
+		this.sabPunt = sabPunt;
+	}
+
+	public int getChaPunt() {
+		return chaPunt;
+	}
+
+	public void setChaPunt(int chaPunt) {
+		this.chaPunt = chaPunt;
+	}
+
+	public Item getWeapon() {
+		return weapon;
+	}
+
+	public void setWeapon(Item weapon) {
+		this.weapon = weapon;
+	}
+
+	public Item getArmor() {
+		return armor;
+	}
+
+	public void setArmor(Item armor) {
+		this.armor = armor;
+	}
+
+	
+
 	
 }

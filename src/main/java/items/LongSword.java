@@ -7,7 +7,7 @@ import source.StatUsed;
 public class LongSword extends Item {
 
 	public LongSword() {
-		super(false, StatUsed.STR, DamageDice.D8);
+		super(false, 0, StatUsed.STR, DamageDice.D8);
 	}
 	
 }

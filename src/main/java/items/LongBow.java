@@ -7,7 +7,7 @@ import source.StatUsed;
 public class LongBow extends Item {
 
 	public LongBow() {
-		super(false, StatUsed.DEX, DamageDice.D8);
+		super(false, 0, StatUsed.DEX, DamageDice.D8);
 	}	
 	
 }

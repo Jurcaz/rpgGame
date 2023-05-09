@@ -1,5 +1,7 @@
 package util;
 
+import source.Creature;
+
 public class UtilBattle {
 
 	//dados para rolar
@@ -92,5 +94,8 @@ public class UtilBattle {
 			} 
 		}
 	
+		public static void attackCreature(Creature c1, Creature c2) {
+			c2.setActualHp(c1.attack());
+		}
 	
 }
