@@ -9,6 +9,8 @@ import creatures.Ranger;
 import creatures.Zombie;
 import gui.Test;
 import source.Creature;
+import source.TeamCreatures;
+import util.BattleArena;
 import util.IniciativeComparator;
 import util.UtilBattle;
 
@@ -16,16 +18,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Test window = new Test();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		BattleArena ba = BattleArena.getInstance();
 		
 		Fighter f1 = new Fighter();
 		Ranger r1 = new Ranger();
@@ -35,25 +28,17 @@ public class Main {
 		Zombie z2 = new Zombie();
 		Zombie z3 = new Zombie();
 		
-//		f1.rollIniciative();
-//		r1.rollIniciative();
-//		c1.rollIniciative();
+		ba.BattleArena(new TeamCreatures(f1, r1, c1), new TeamCreatures(z1, z2, z3));
 		
-//		z1.rollIniciative();
-//		z2.rollIniciative();
-//		z3.rollIniciative();
-				
-//		ArrayList<Creature> iniciativeList = new ArrayList<Creature>();   
+		ba.showList();
 		
-//		iniciativeList.add(f1);
-//		iniciativeList.add(r1);
-//		iniciativeList.add(c1);
+		try {
+			Test frame = new Test();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-//		iniciativeList.add(z1);
-//		iniciativeList.add(z2);
-//		iniciativeList.add(z3);
-		
-//		iniciativeList.sort(new IniciativeComparator());
 		
 //		for (Creature c : iniciativeList) { System.out.println( c.getClass().toString().charAt(16)+": "+c.getIniciative());	}
 		

@@ -4,7 +4,7 @@ import source.Creature;
 
 public class UtilBattle {
 
-	//dados para rolar
+		//dados para rolar
 		public static int dCien() {						
 			return (int) (Math.random()*100+1); 
 		}

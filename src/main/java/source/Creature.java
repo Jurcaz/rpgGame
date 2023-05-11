@@ -4,37 +4,31 @@ import util.UtilBattle;
 
 public abstract class Creature {
 	
-	//vida max, vida actual, iniciativa, estadisticas, armadura, armas
+	private int maxHp;
+	private int actualHp;
 	
-	int maxHp;
-	int actualHp;
+	private double iniciative;
 	
-	double iniciative;
+	private int strPunt;
+	private int dexPunt;
+	private int conPunt;
+	private int intPunt;
+	private int sabPunt;
+	private int chaPunt;
 	
-	int strPunt;
-	int dexPunt;
-	int conPunt;
-	int intPunt;
-	int sabPunt;
-	int chaPunt;
+	private Item weapon;
+	private Item armor;
 	
-	Item weapon;
-	Item armor;
+	protected String sprite;
+	
+	private boolean turn;
+	
+	private boolean pj;
 
-	public Creature(int maxHp, int strPunt, int dexPunt, int conPunt, int intPunt,	int sabPunt, int chaPunt) {
-		super();
-		this.maxHp = maxHp;
-		this.actualHp = maxHp;
-		this.iniciative = 0;
-		this.strPunt = strPunt;
-		this.dexPunt = dexPunt;
-		this.conPunt = conPunt;
-		this.intPunt = intPunt;
-		this.sabPunt = sabPunt;
-		this.chaPunt = chaPunt;
+	public Creature() {
 	}
-	
-	public Creature(int maxHp, int strPunt, int dexPunt, int conPunt, int intPunt,	int sabPunt, int chaPunt, Item weapon, Item armor) {
+
+	public Creature(int maxHp, int strPunt, int dexPunt, int conPunt, int intPunt,	int sabPunt, int chaPunt, Item weapon, Item armor, String sprite, boolean pj) {
 		super();
 		this.maxHp = maxHp;
 		this.actualHp = maxHp;
@@ -47,8 +41,11 @@ public abstract class Creature {
 		this.chaPunt = chaPunt;
 		this.weapon = weapon;
 		this.armor = armor;
+		this.sprite = sprite;
+		this.turn = false;
+		this.pj = pj;
 	}
-	
+
 	public void rollIniciative() {
 		this.iniciative = UtilBattle.dVeinte()+UtilBattle.obtenBon(this.dexPunt)+(UtilBattle.obtenBon(this.dexPunt)*0.1)+(UtilBattle.dDiez()*0.01);
 	}
@@ -201,8 +198,29 @@ public abstract class Creature {
 	public void setArmor(Item armor) {
 		this.armor = armor;
 	}
-
 	
+	public boolean isTurn() {
+		return turn;
+	}
 
+	public void setTurn(boolean turn) {
+		this.turn = turn;
+	}
+	
+	public String getSprite() {
+		return this.sprite;
+	}
+
+	public void setSprite(String sprite) {
+		this.sprite = sprite;
+	}
+
+	public boolean isPj() {
+		return pj;
+	}
+
+	public void setPj(boolean pj) {
+		this.pj = pj;
+	}
 	
 }

@@ -4,60 +4,112 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import util.BattleArena;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
-public class Test extends JFrame{
-
-	private static final long serialVersionUID = 1L;
+public class Test extends JFrame {
 	
-	public JFrame frame;
+	static BattleArena ba = BattleArena.getInstance();
 
+	private JPanel contentPane;
+	
+	private JPanel battlePanel;
+	
+	private JPanel heroesPanel;
+	
+	private JButton hero1Btn;
+	private JButton hero2Btn;
+	private JButton hero3Btn;
+	
+	
+	private JPanel mobPanel;
+		
+	private JButton mob1Btn;
+	private JButton mob2Btn;
+	private JButton mob3Btn;
+	
+	
+	private JPanel contextualPanel;
+	
+	private JLabel contextualLbl;
+	private JButton finishTurnBtn;
+
+	/**
+	 * Create the frame.
+	 */
 	public Test() {
-		getContentPane().setLayout(new BorderLayout(0, 0));
-		
-		JPanel contextualPanel = new JPanel();
-		getContentPane().add(contextualPanel, BorderLayout.SOUTH);
-		
-		JPanel battlePanel = new JPanel();
-		getContentPane().add(battlePanel, BorderLayout.CENTER);
-		battlePanel.setLayout(null);
-		
-		JLabel hero1lbl = new JLabel("");
-		hero1lbl.setBounds(10, 11, 32, 32);
-		battlePanel.add(hero1lbl);
-		
-		JLabel hero2lbl = new JLabel("");
-		hero2lbl.setBounds(10, 54, 32, 32);
-		battlePanel.add(hero2lbl);
-		
-		JLabel hero3lbl = new JLabel("");
-		hero3lbl.setBounds(10, 97, 32, 32);
-		battlePanel.add(hero3lbl);
-		
-		JLabel mob1lbl = new JLabel("");
-		mob1lbl.setBounds(392, 11, 32, 32);
-		battlePanel.add(mob1lbl);
-		
-		JLabel mob2lbl = new JLabel("");
-		mob2lbl.setBounds(392, 54, 32, 32);
-		battlePanel.add(mob2lbl);
-		
-		JLabel mob3lbl = new JLabel("");
-		mob3lbl.setIcon(new ImageIcon("C:\\Users\\jmdin\\eclipse-workspace\\rpgGame\\src\\main\\resources\\icons\\gladius.png"));
-		mob3lbl.setBounds(392, 97, 32, 32);
-		battlePanel.add(mob3lbl);
-		initialize();
-	}
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 640, 480);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1280, 720);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		battlePanel = new JPanel();
+		contentPane.add(battlePanel, BorderLayout.CENTER);
+		battlePanel.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		heroesPanel = new JPanel();
+		battlePanel.add(heroesPanel);
+		heroesPanel.setLayout(null);
+		
+		hero2Btn = new JButton("");
+		hero2Btn.setBounds(38, 51, 32, 32);
+		heroesPanel.add(hero2Btn);
+		
+		hero1Btn = new JButton("");
+		hero1Btn.setBounds(155, 170, 32, 32);
+		heroesPanel.add(hero1Btn);
+		
+		hero3Btn = new JButton("");
+		hero3Btn.setBounds(38, 278, 32, 32);
+		heroesPanel.add(hero3Btn);
+		
+		mobPanel = new JPanel();
+		battlePanel.add(mobPanel);
+		mobPanel.setLayout(null);
+		
+		mob2Btn = new JButton("");
+		mob2Btn.setBounds(184, 36, 32, 32);
+		mobPanel.add(mob2Btn);
+		
+		mob1Btn = new JButton("");
+		mob1Btn.setBounds(102, 171, 32, 32);
+		mobPanel.add(mob1Btn);
+		
+		mob3Btn = new JButton("");
+		mob3Btn.setBounds(184, 269, 32, 32);
+		mobPanel.add(mob3Btn);
+		
+		contextualPanel = new JPanel();
+		contentPane.add(contextualPanel, BorderLayout.SOUTH);
+		contextualPanel.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		contextualLbl = new JLabel("");
+		contextualPanel.add(contextualLbl);
+		
+		finishTurnBtn = new JButton("Finish Turn");
+		contextualPanel.add(finishTurnBtn);
+		
+		setSprites();
+	}
+	
+	public void setSprites() {
+		//hero1Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteHeros(0))));
+		//hero2Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteHeros(1))));
+		//hero3Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteHeros(2))));
+		
+		mob1Btn.setIcon(new ImageIcon(Test.class.getResource("/rpgGame/src/main/resources/raise-zombie.png")));
+		//mob2Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteMobs(1))));
+		//mob3Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteMobs(2))));
 	}
 }
