@@ -124,7 +124,14 @@ public abstract class Creature {
 	}
 
 	public void setActualHp(int actualHp) {
-		this.actualHp = this.actualHp + actualHp;
+		
+		if(this.actualHp + actualHp <= 0) {
+			this.actualHp = 0;
+		} else if(this.actualHp + actualHp >= this.maxHp) {
+			this.actualHp = this.maxHp;
+		} else {
+			this.actualHp = this.actualHp + actualHp;
+		}
 	}
 
 	public double getIniciative() {
@@ -221,6 +228,11 @@ public abstract class Creature {
 
 	public void setPj(boolean pj) {
 		this.pj = pj;
+	}
+	
+	public boolean alive() {
+		if(this.actualHp > 0) return true;
+		return false;
 	}
 	
 }

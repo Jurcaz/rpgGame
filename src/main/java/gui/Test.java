@@ -108,7 +108,7 @@ public class Test extends JFrame {
 		//hero2Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteHeros(1))));
 		//hero3Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteHeros(2))));
 		
-		mob1Btn.setIcon(new ImageIcon(Test.class.getResource("/rpgGame/src/main/resources/raise-zombie.png")));
+		//mob1Btn.setIcon(new ImageIcon(new URL));
 		//mob2Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteMobs(1))));
 		//mob3Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteMobs(2))));
 	}
