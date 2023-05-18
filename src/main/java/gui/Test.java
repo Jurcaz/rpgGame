@@ -17,30 +17,32 @@ import javax.swing.ImageIcon;
 
 public class Test extends JFrame {
 	
+	private static final long serialVersionUID = 1L;
+
 	static BattleArena ba = BattleArena.getInstance();
 
-	private JPanel contentPane;
+	static private JPanel contentPane;
 	
-	private JPanel battlePanel;
+	static private JPanel battlePanel;
 	
-	private JPanel heroesPanel;
+	static private JPanel heroesPanel;
 	
-	private JButton hero1Btn;
-	private JButton hero2Btn;
-	private JButton hero3Btn;
+	static private JButton hero1Btn;
+	static private JButton hero2Btn;
+	static private JButton hero3Btn;
 	
 	
-	private JPanel mobPanel;
+	static private JPanel mobPanel;
 		
-	private JButton mob1Btn;
-	private JButton mob2Btn;
-	private JButton mob3Btn;
+	static private JButton mob1Btn;
+	static private JButton mob2Btn;
+	static private JButton mob3Btn;
 	
 	
-	private JPanel contextualPanel;
+	static private JPanel contextualPanel;
 	
-	private JLabel contextualLbl;
-	private JButton finishTurnBtn;
+	static private JLabel contextualLbl;
+	static private JButton finishTurnBtn;
 
 	/**
 	 * Create the frame.
@@ -52,10 +54,11 @@ public class Test extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(null);
 		
 		battlePanel = new JPanel();
-		contentPane.add(battlePanel, BorderLayout.CENTER);
+		battlePanel.setBounds(5, 5, 614, 342);
+		contentPane.add(battlePanel);
 		battlePanel.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		heroesPanel = new JPanel();
@@ -91,7 +94,8 @@ public class Test extends JFrame {
 		mobPanel.add(mob3Btn);
 		
 		contextualPanel = new JPanel();
-		contentPane.add(contextualPanel, BorderLayout.SOUTH);
+		contextualPanel.setBounds(5, 358, 614, 78);
+		contentPane.add(contextualPanel);
 		contextualPanel.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		contextualLbl = new JLabel("");
@@ -103,13 +107,18 @@ public class Test extends JFrame {
 		setSprites();
 	}
 	
-	public void setSprites() {
-		//hero1Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteHeros(0))));
-		//hero2Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteHeros(1))));
-		//hero3Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteHeros(2))));
+	public static void setSprites() {
+		hero1Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteHeros(0)));
+		hero2Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteHeros(1)));
+		hero3Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteHeros(2)));
 		
-		//mob1Btn.setIcon(new ImageIcon(new URL));
-		//mob2Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteMobs(1))));
-		//mob3Btn.setIcon(new ImageIcon(Test.class.getResource(ba.getSpriteMobs(2))));
+		mob1Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteMobs(0)));
+		mob2Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteMobs(1)));
+		mob3Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteMobs(2)));
 	}
+	
+	public static void setHpContextual(String str) {
+		contextualLbl.setText(str);
+	}
+	
 }

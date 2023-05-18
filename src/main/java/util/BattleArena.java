@@ -2,10 +2,11 @@ package util;
 
 import java.util.ArrayList;
 
+import gui.Test;
 import source.Creature;
 import source.TeamCreatures;
 
-public class BattleArena implements Runnable{
+public class BattleArena{
 	
 	private static BattleArena instance;
 	
@@ -26,6 +27,8 @@ public class BattleArena implements Runnable{
 	private Creature[] heros = {null,null,null};
 	private Creature[] mobs = {null,null,null};
 	
+	private int objetive;
+	
 	private boolean finishGame;
 	
 	//------------------------------Constructor------------------------------//
@@ -33,17 +36,15 @@ public class BattleArena implements Runnable{
 	public void CreateArena(TeamCreatures pHeros, TeamCreatures pMobs) {
 	
 		this.finishGame = false;
+		this.turn = 0;
 		
-		this.heros = pHeros.getList();
-		this.mobs = pMobs.getList();
-		
-		listIniciative.add(pHeros.getPos1());
-		listIniciative.add(pHeros.getPos2());
-		listIniciative.add(pHeros.getPos3());
-		listIniciative.add(pMobs.getPos1());
-		listIniciative.add(pMobs.getPos2());
-		listIniciative.add(pMobs.getPos3());
-		
+		for(int i = 0 ; i<3 ; i++) {
+			this.heros[i] = pHeros.getList()[i];
+			this.mobs[i] = pMobs.getList()[i];
+			listIniciative.add(pHeros.getList()[i]);
+			listIniciative.add(pMobs.getList()[i]);
+		}
+				
 		for (Creature c : listIniciative) {
 			c.rollIniciative();
 		}
@@ -51,12 +52,37 @@ public class BattleArena implements Runnable{
 		listIniciative.sort(new IniciativeComparator());
 	
 	}
+	//-----------------------Lista iniciativa metodos--------------------//
+	
+	public Creature getCreatureOnTurn() {
+		return listIniciative.get(turn);
+	}
+	
+	public void nextTrun() {
+		if(turn >= 5) { turn=0; } else { turn++; }
+	}
+	
+	public int getTurn() {
+		return turn;
+	}
 	
 	//------------------------------Metodos------------------------------//
 	
-	public void showList() {
+	public void showIniciativeList() {
 		for (Creature c : listIniciative) {
 			System.out.println(c.getClass().toString() +": "+ c.getIniciative());
+		}
+	}
+	
+	public void showHeroesList() {
+		for(int i = 0 ; i<3 ; i++) {
+			System.out.println(this.heros[i].getClass().toString());
+		}
+	}
+	
+	public void showMobsList() {
+		for(int i = 0 ; i<3 ; i++) {
+			System.out.println(this.mobs[i].getClass().toString());
 		}
 	}
 	
@@ -88,41 +114,31 @@ public class BattleArena implements Runnable{
 		return false;
 	}
 	
-	public void showHp() {
-		System.out.println("Fighter HP - " + heros[0].getActualHp() +"/"+ heros[0].getMaxHp()+"\n"+
+	public String showHp() {
+		return "Fighter HP - " + heros[0].getActualHp() +"/"+ heros[0].getMaxHp()+"\n"+
 				"Ranger HP - " + heros[1].getActualHp() +"/"+ heros[1].getMaxHp()+"\n"+
 				"Cleric HP - " + heros[2].getActualHp() +"/"+ heros[2].getMaxHp()+"\n"+
 				"Zombie 1 HP - " + mobs[0].getActualHp() +"/"+ mobs[0].getMaxHp()+"\n"+
 				"Zombie 2 HP - " + mobs[1].getActualHp() +"/"+ mobs[1].getMaxHp()+"\n"+
-				"Zombie 3 HP - " + mobs[2].getActualHp() +"/"+ mobs[2].getMaxHp()+"\n");
+				"Zombie 3 HP - " + mobs[2].getActualHp() +"/"+ mobs[2].getMaxHp()+"\n";
+	}
+	
+	public void setObjetive(int i) {
+		this.objetive = i;
 	}
 
-	public void run() {
+	//----------------------------Turn-----------------------------//
+	
+	public void turn() {	
 		
-		while (getFinishGame()) {
-			showHp();
-			System.out.println("Heroes alive - "+heroesAlive());
-			System.out.println("Mobs alive - "+mobsAlive());
-			
-			UtilBattle.attackCreature(heros[0], mobs[0]);
-			UtilBattle.attackCreature(heros[0], mobs[1]);
-			UtilBattle.attackCreature(heros[0], mobs[2]);
-
-			UtilBattle.attackCreature(heros[1], mobs[0]);
-			UtilBattle.attackCreature(heros[1], mobs[1]);
-			UtilBattle.attackCreature(heros[1], mobs[2]);
-			
-			if(heroesAlive() && mobsAlive()) setFinishGame(true);
-			
-			try {
-				Thread.sleep(2000);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			
+		if(getCreatureOnTurn().isPj()) {
+			UtilBattle.attackCreature(getCreatureOnTurn(), mobs[objetive]);
+		} else {
+			UtilBattle.attackCreature(getCreatureOnTurn(), heros[UtilBattle.randomTarget()]);
 		}
 		
-		
+		Test.setHpContextual(showHp());
+		nextTrun();			
 	}
 
 	
