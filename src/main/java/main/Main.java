@@ -38,8 +38,6 @@ public class Main {
 		Test windowBattle = new Test();
 		windowBattle.setVisible(true);
 
-		windowBattle.setHpContextual(ba.showHp());
-		
 		//ba.showHeroesList();
 		//ba.showMobsList();
 		//System.out.println("Fighter HP - " + f1.getActualHp() +"/"+ f1.getMaxHp()+"\n"+"Ranger HP - " + r1.getActualHp() +"/"+ r1.getMaxHp()+"\n"+"Cleric HP - " + c1.getActualHp() +"/"+ c1.getMaxHp()+"\n"+"Zombie 1 HP - " + z1.getActualHp() +"/"+ z1.getMaxHp()+"\n"+"Zombie 2 HP - " + z2.getActualHp() +"/"+ z2.getMaxHp()+"\n"+	"Zombie 3 HP - " + z3.getActualHp() +"/"+ z3.getMaxHp()+"\n");		

@@ -1,19 +1,18 @@
 package gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import source.Creature;
 import util.BattleArena;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Test extends JFrame {
 	
@@ -44,9 +43,6 @@ public class Test extends JFrame {
 	static private JLabel contextualLbl;
 	static private JButton finishTurnBtn;
 
-	/**
-	 * Create the frame.
-	 */
 	public Test() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
@@ -105,20 +101,88 @@ public class Test extends JFrame {
 		contextualPanel.add(finishTurnBtn);
 		
 		setSprites();
+		buttonsActions();
+		
+		showHp();
+		showIniciativeTurn();
+		markCreatureOnTurn();
+	}
+
+	private void buttonsActions() {
+		hero1Btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ba.setObjetive(0);
+			}
+		});
+		
+		hero2Btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ba.setObjetive(1);
+			}
+		});
+		
+		hero3Btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ba.setObjetive(2);
+			}
+		});
+		
+		mob1Btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ba.setObjetive(0);
+			}
+		});
+		
+		mob2Btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ba.setObjetive(1);
+			}
+		});
+		
+		mob3Btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ba.setObjetive(2);
+			}
+		});
+		
+		finishTurnBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ba.endTurn();
+			}
+		});
 	}
 	
 	public static void setSprites() {
 		hero1Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteHeros(0)));
+			ba.getHero(0).setBttn(hero1Btn);
 		hero2Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteHeros(1)));
+			ba.getHero(1).setBttn(hero2Btn);
 		hero3Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteHeros(2)));
+			ba.getHero(2).setBttn(hero3Btn);
 		
 		mob1Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteMobs(0)));
+			ba.getMob(0).setBttn(mob1Btn);
 		mob2Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteMobs(1)));
+			ba.getMob(1).setBttn(mob2Btn);
 		mob3Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteMobs(2)));
+			ba.getMob(2).setBttn(mob3Btn);
 	}
 	
 	public static void setHpContextual(String str) {
 		contextualLbl.setText(str);
+		System.out.println(str);
+	}
+	
+	private void showHp() {
+		System.out.println(ba.showHp());
+	}
+	
+	public static void showIniciativeTurn() {
+		System.out.println(ba.getCreatureOnTurn()+"\n");
+	}
+	
+	public static void markCreatureOnTurn() {
+		ba.markCreatureOnTurn();
 	}
 	
 }

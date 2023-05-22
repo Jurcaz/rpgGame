@@ -50,8 +50,9 @@ public class BattleArena{
 		}
 		
 		listIniciative.sort(new IniciativeComparator());
-	
+		
 	}
+	
 	//-----------------------Lista iniciativa metodos--------------------//
 	
 	public Creature getCreatureOnTurn() {
@@ -59,7 +60,7 @@ public class BattleArena{
 	}
 	
 	public void nextTrun() {
-		if(turn >= 5) { turn=0; } else { turn++; }
+		if(turn >= (listIniciative.size()-1)) { turn=0; } else { turn++; }
 	}
 	
 	public int getTurn() {
@@ -86,12 +87,24 @@ public class BattleArena{
 		}
 	}
 	
+	public ArrayList<Creature> getIniciativeList() {
+		return listIniciative;
+	}
+	
 	public String getSpriteHeros(int p) {
 		return heros[p].getSprite();
 	}
 	
 	public String getSpriteMobs(int p) {
 		return mobs[p].getSprite();
+	}
+	
+	public Creature getHero(int p) {
+		return heros[p];
+	}
+	
+	public Creature getMob(int p) {
+		return mobs[p];
 	}
 	
 	public boolean getFinishGame() {
@@ -126,10 +139,21 @@ public class BattleArena{
 	public void setObjetive(int i) {
 		this.objetive = i;
 	}
+	
+	public void markCreatureOnTurn() {
+		getCreatureOnTurn().markButton();
+	}
+	
+	public void unmarkCreatureOnTurn() {
+		getCreatureOnTurn().unmarkButton();
+	}
 
 	//----------------------------Turn-----------------------------//
 	
-	public void turn() {	
+	public void endTurn() {
+		
+		// resaltar a la criatura en turno
+		// 
 		
 		if(getCreatureOnTurn().isPj()) {
 			UtilBattle.attackCreature(getCreatureOnTurn(), mobs[objetive]);
@@ -138,7 +162,10 @@ public class BattleArena{
 		}
 		
 		Test.setHpContextual(showHp());
-		nextTrun();			
+		
+		unmarkCreatureOnTurn();
+		nextTrun();
+		markCreatureOnTurn();
 	}
 
 	

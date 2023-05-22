@@ -1,5 +1,9 @@
 package source;
 
+import java.awt.Color;
+
+import javax.swing.JButton;
+
 import util.UtilBattle;
 
 public abstract class Creature {
@@ -24,6 +28,8 @@ public abstract class Creature {
 	private boolean turn;
 	
 	private boolean pj;
+	
+	private JButton bttn;
 
 	public Creature() {
 	}
@@ -233,6 +239,22 @@ public abstract class Creature {
 	public boolean alive() {
 		if(this.actualHp > 0) return true;
 		return false;
+	}
+
+	public JButton getBttn() {
+		return bttn;
+	}
+
+	public void setBttn(JButton bttn) {
+		this.bttn = bttn;
+	}
+	
+	public void markButton() {
+		this.bttn.setBackground(new Color(255, 0, 0));
+	}
+	
+	public void unmarkButton() {
+		this.bttn.setBackground(null);
 	}
 	
 }
