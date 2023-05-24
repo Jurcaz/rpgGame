@@ -257,4 +257,13 @@ public abstract class Creature {
 		this.bttn.setBackground(null);
 	}
 	
+	public int compareTo(Creature o) {
+		if (this.iniciative > o.iniciative) {
+			return -1;
+		} else if (this.iniciative < o.iniciative) {
+			return 1;
+		}
+		return 0;
+	}
+	
 }

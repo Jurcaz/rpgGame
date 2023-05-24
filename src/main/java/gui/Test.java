@@ -4,15 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import source.Creature;
 import util.BattleArena;
 
 import java.awt.GridLayout;
-import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Color;
+import javax.swing.JTextArea;
 
 public class Test extends JFrame {
 	
@@ -40,12 +38,13 @@ public class Test extends JFrame {
 	
 	static private JPanel contextualPanel;
 	
-	static private JLabel contextualLbl;
+	static private JTextArea contextualTextArea;
+	
 	static private JButton finishTurnBtn;
 
 	public Test() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 640, 480);
+		setBounds(100, 100, 640, 414);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -53,7 +52,7 @@ public class Test extends JFrame {
 		contentPane.setLayout(null);
 		
 		battlePanel = new JPanel();
-		battlePanel.setBounds(5, 5, 614, 342);
+		battlePanel.setBounds(5, 5, 614, 252);
 		contentPane.add(battlePanel);
 		battlePanel.setLayout(new GridLayout(1, 0, 0, 0));
 		
@@ -62,15 +61,15 @@ public class Test extends JFrame {
 		heroesPanel.setLayout(null);
 		
 		hero2Btn = new JButton("");
-		hero2Btn.setBounds(38, 51, 32, 32);
+		hero2Btn.setBounds(107, 11, 90, 230);
 		heroesPanel.add(hero2Btn);
 		
 		hero1Btn = new JButton("");
-		hero1Btn.setBounds(155, 170, 32, 32);
+		hero1Btn.setBounds(207, 11, 90, 230);
 		heroesPanel.add(hero1Btn);
 		
 		hero3Btn = new JButton("");
-		hero3Btn.setBounds(38, 278, 32, 32);
+		hero3Btn.setBounds(7, 11, 90, 230);
 		heroesPanel.add(hero3Btn);
 		
 		mobPanel = new JPanel();
@@ -78,24 +77,24 @@ public class Test extends JFrame {
 		mobPanel.setLayout(null);
 		
 		mob2Btn = new JButton("");
-		mob2Btn.setBounds(184, 36, 32, 32);
+		mob2Btn.setBounds(110, 11, 90, 230);
 		mobPanel.add(mob2Btn);
 		
 		mob1Btn = new JButton("");
-		mob1Btn.setBounds(102, 171, 32, 32);
+		mob1Btn.setBounds(10, 11, 90, 230);
 		mobPanel.add(mob1Btn);
 		
 		mob3Btn = new JButton("");
-		mob3Btn.setBounds(184, 269, 32, 32);
+		mob3Btn.setBounds(210, 11, 90, 230);
 		mobPanel.add(mob3Btn);
 		
 		contextualPanel = new JPanel();
-		contextualPanel.setBounds(5, 358, 614, 78);
+		contextualPanel.setBounds(5, 268, 614, 96);
 		contentPane.add(contextualPanel);
 		contextualPanel.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		contextualLbl = new JLabel("");
-		contextualPanel.add(contextualLbl);
+		contextualTextArea = new JTextArea();
+		contextualPanel.add(contextualTextArea);
 		
 		finishTurnBtn = new JButton("Finish Turn");
 		contextualPanel.add(finishTurnBtn);
@@ -153,23 +152,23 @@ public class Test extends JFrame {
 	}
 	
 	public static void setSprites() {
-		hero1Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteHeros(0)));
-			ba.getHero(0).setBttn(hero1Btn);
-		hero2Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteHeros(1)));
-			ba.getHero(1).setBttn(hero2Btn);
-		hero3Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteHeros(2)));
-			ba.getHero(2).setBttn(hero3Btn);
+		hero1Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonHero()));
+			ba.setJbuttonHero(hero1Btn);
+		hero2Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonHero()));
+			ba.setJbuttonHero(hero2Btn);
+		hero3Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonHero()));
+			ba.setJbuttonHero(hero3Btn);
 		
-		mob1Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteMobs(0)));
-			ba.getMob(0).setBttn(mob1Btn);
-		mob2Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteMobs(1)));
-			ba.getMob(1).setBttn(mob2Btn);
-		mob3Btn.setIcon(new javax.swing.ImageIcon(ba.getSpriteMobs(2)));
-			ba.getMob(2).setBttn(mob3Btn);
+		mob1Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonMob()));
+			ba.setJbuttonMob(mob1Btn);
+		mob2Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonMob()));
+			ba.setJbuttonMob(mob2Btn);
+		mob3Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonMob()));
+			ba.setJbuttonMob(mob3Btn);
 	}
 	
 	public static void setHpContextual(String str) {
-		contextualLbl.setText(str);
+		contextualTextArea.setText(str);
 		System.out.println(str);
 	}
 	
@@ -184,5 +183,4 @@ public class Test extends JFrame {
 	public static void markCreatureOnTurn() {
 		ba.markCreatureOnTurn();
 	}
-	
 }

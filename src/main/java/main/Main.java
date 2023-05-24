@@ -31,10 +31,6 @@ public class Main {
 		
 		ba.CreateArena(new TeamCreatures(f1, r1, c1), new TeamCreatures(z1, z2, z3));
 		
-		
-		
-		
-		
 		Test windowBattle = new Test();
 		windowBattle.setVisible(true);
 

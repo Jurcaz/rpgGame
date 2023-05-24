@@ -8,7 +8,7 @@ import source.Creature;
 public class Zombie extends Creature {
 
 	public Zombie() {
-		super(20, 14, 8, 16, 4, 8, 4, new Claw(), new LightArmor(),"src\\main\\resources\\raiseZombie.png", false);
+		super(20, 14, 8, 16, 4, 8, 4, new Claw(), new LightArmor(),"src\\main\\resources\\skeleton.png", false);
 	}
 
 }

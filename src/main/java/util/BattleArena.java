@@ -1,12 +1,13 @@
 package util;
 
 import java.util.ArrayList;
+import javax.swing.JButton;
 
 import gui.Test;
 import source.Creature;
 import source.TeamCreatures;
 
-public class BattleArena{
+public class BattleArena {
 	
 	private static BattleArena instance;
 	
@@ -21,13 +22,17 @@ public class BattleArena{
 	
 	//------------------------------Atributos------------------------------//
 	
-	private int turn;
 	private ArrayList<Creature> listIniciative = new ArrayList<Creature>();
+		
+	private ArrayList<Creature> herosList = new ArrayList<Creature>();
+	private ArrayList<Creature> mobsList = new ArrayList<Creature>();
 	
-	private Creature[] heros = {null,null,null};
-	private Creature[] mobs = {null,null,null};
+	private int turn;
 	
 	private int objetive;
+	
+	private int auxHero;
+	private int auxMob;
 	
 	private boolean finishGame;
 	
@@ -37,10 +42,13 @@ public class BattleArena{
 	
 		this.finishGame = false;
 		this.turn = 0;
+		this.objetive = 0;
+		this.auxHero = 0;
+		this.auxMob = 0;
 		
 		for(int i = 0 ; i<3 ; i++) {
-			this.heros[i] = pHeros.getList()[i];
-			this.mobs[i] = pMobs.getList()[i];
+			this.herosList.add(pHeros.getList()[i]);
+			this.mobsList.add(pMobs.getList()[i]);
 			listIniciative.add(pHeros.getList()[i]);
 			listIniciative.add(pMobs.getList()[i]);
 		}
@@ -49,6 +57,8 @@ public class BattleArena{
 			c.rollIniciative();
 		}
 		
+		herosList.sort(new IniciativeComparator());
+		mobsList.sort(new IniciativeComparator());
 		listIniciative.sort(new IniciativeComparator());
 		
 	}
@@ -59,7 +69,7 @@ public class BattleArena{
 		return listIniciative.get(turn);
 	}
 	
-	public void nextTrun() {
+	public void nextTurn() {
 		if(turn >= (listIniciative.size()-1)) { turn=0; } else { turn++; }
 	}
 	
@@ -69,71 +79,47 @@ public class BattleArena{
 	
 	//------------------------------Metodos------------------------------//
 	
-	public void showIniciativeList() {
-		for (Creature c : listIniciative) {
-			System.out.println(c.getClass().toString() +": "+ c.getIniciative());
-		}
-	}
-	
-	public void showHeroesList() {
-		for(int i = 0 ; i<3 ; i++) {
-			System.out.println(this.heros[i].getClass().toString());
-		}
-	}
-	
-	public void showMobsList() {
-		for(int i = 0 ; i<3 ; i++) {
-			System.out.println(this.mobs[i].getClass().toString());
-		}
-	}
-	
 	public ArrayList<Creature> getIniciativeList() {
 		return listIniciative;
 	}
 	
-	public String getSpriteHeros(int p) {
-		return heros[p].getSprite();
+	public String metodoSpriteBotonHero() {
+		return herosList.get(auxHero).getSprite();
 	}
 	
-	public String getSpriteMobs(int p) {
-		return mobs[p].getSprite();
+	public String metodoSpriteBotonMob() {
+		return mobsList.get(auxMob).getSprite();
 	}
 	
-	public Creature getHero(int p) {
-		return heros[p];
+	public void setJbuttonHero(JButton b) {
+		this.herosList.get(auxHero).setBttn(b);
+		auxHero++;
 	}
 	
-	public Creature getMob(int p) {
-		return mobs[p];
-	}
-	
-	public boolean getFinishGame() {
-		return finishGame;
-	}
-
-	public void setFinishGame(boolean finishGame) {
-		this.finishGame = finishGame;
+	public void setJbuttonMob(JButton b) {
+		this.mobsList.get(auxMob).setBttn(b);
+		auxMob++;
 	}
 	
 	private boolean heroesAlive() {
-		if( heros[0].alive() || heros[1].alive() || heros[2].alive() ) return true;
+		if( herosList.get(0).alive() || herosList.get(1).alive() || herosList.get(2).alive() ) return true;
 		
 		return false;
 	}
 	
 	private boolean mobsAlive() {
-		if( mobs[0].alive() || mobs[1].alive() || mobs[2].alive() ) return true;
+		if( mobsList.get(0).alive() || mobsList.get(1).alive() || mobsList.get(2).alive() ) return true;
 		
 		return false;
 	}
 	
 	public String showHp() {
-		return "Fighter HP - " + heros[0].getActualHp() +"/"+ heros[0].getMaxHp()+"\n"+
-				"Ranger HP - " + heros[1].getActualHp() +"/"+ heros[1].getMaxHp()+"\n"+
-				"Cleric HP - " + heros[2].getActualHp() +"/"+ heros[2].getMaxHp()+"\n"+
-				"Zombie 1 HP - " + mobs[0].getActualHp() +"/"+ mobs[0].getMaxHp()+"\n"+
-				"Zombie 2 HP - " + mobs[1].getActualHp() +"/"+ mobs[1].getMaxHp()+"\n"+
-				"Zombie 3 HP - " + mobs[2].getActualHp() +"/"+ mobs[2].getMaxHp()+"\n";
+		return "Fighter HP - " + herosList.get(0).getActualHp() +"/"+ herosList.get(0).getMaxHp()+"\n"+
+				"Ranger HP - " + herosList.get(1).getActualHp() +"/"+ herosList.get(1).getMaxHp()+"\n"+
+				"Cleric HP - " + herosList.get(2).getActualHp() +"/"+ herosList.get(2).getMaxHp()+"\n"+
+				"Zombie 1 HP - " + mobsList.get(0).getActualHp() +"/"+ mobsList.get(0).getMaxHp()+"\n"+
+				"Zombie 2 HP - " + mobsList.get(1).getActualHp() +"/"+ mobsList.get(1).getMaxHp()+"\n"+
+				"Zombie 3 HP - " + mobsList.get(2).getActualHp() +"/"+ mobsList.get(2).getMaxHp()+"\n";
 	}
 	
 	public void setObjetive(int i) {
@@ -147,27 +133,81 @@ public class BattleArena{
 	public void unmarkCreatureOnTurn() {
 		getCreatureOnTurn().unmarkButton();
 	}
+	
+	public Creature getHero(int i) {
+		return this.herosList.get(i);
+	}
+	
+	public Creature getMob(int i) {
+		return this.mobsList.get(i);
+	}
 
 	//----------------------------Turn-----------------------------//
 	
 	public void endTurn() {
 		
-		// resaltar a la criatura en turno
-		// 
-		
 		if(getCreatureOnTurn().isPj()) {
-			UtilBattle.attackCreature(getCreatureOnTurn(), mobs[objetive]);
+			if(getCreatureOnTurn().getWeapon().isHeal()) {
+				UtilBattle.attackCreature(getCreatureOnTurn(), herosList.get(objetive));
+			} else {
+				UtilBattle.attackCreature(getCreatureOnTurn(), mobsList.get(objetive));
+			}
+			
 		} else {
-			UtilBattle.attackCreature(getCreatureOnTurn(), heros[UtilBattle.randomTarget()]);
+			UtilBattle.attackCreature(getCreatureOnTurn(), herosList.get(UtilBattle.randomTarget()));
 		}
 		
 		Test.setHpContextual(showHp());
 		
 		unmarkCreatureOnTurn();
-		nextTrun();
+		nextTurn();
 		markCreatureOnTurn();
 	}
 
+	//-----------------------GettersSetters------------------------//
 	
+	public ArrayList<Creature> getListIniciative() {
+		return listIniciative;
+	}
+
+	public void setListIniciative(ArrayList<Creature> listIniciative) {
+		this.listIniciative = listIniciative;
+	}
+
+	public ArrayList<Creature> getHeros() {
+		return herosList;
+	}
+
+	public void setHeros(ArrayList<Creature> heros) {
+		this.herosList = heros;
+	}
+
+	public ArrayList<Creature> getMobs() {
+		return mobsList;
+	}
+
+	public void setMobs(ArrayList<Creature> mobs) {
+		this.mobsList = mobs;
+	}
+
+	public boolean isFinishGame() {
+		return finishGame;
+	}
+
+	public void setFinishGame(boolean finishGame) {
+		this.finishGame = finishGame;
+	}
+
+	public int getObjetive() {
+		return objetive;
+	}
+
+	public static void setInstance(BattleArena instance) {
+		BattleArena.instance = instance;
+	}
+
+	public void setTurn(int turn) {
+		this.turn = turn;
+	}
 	
 }
