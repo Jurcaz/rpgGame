@@ -12,6 +12,7 @@ import gui.Test;
 import source.Creature;
 import source.TeamCreatures;
 import util.BattleArena;
+import util.Catalogue;
 import util.IniciativeComparator;
 import util.UtilBattle;
 
@@ -20,16 +21,19 @@ public class Main {
 	public static void main(String[] args) {
 			
 		BattleArena ba = BattleArena.getInstance();
+		Catalogue cat = Catalogue.getInstance();
+				
+		cat.instanceCatalogue();
 		
-		Fighter f1 = new Fighter();
-		Ranger r1 = new Ranger();
-		Cleric c1 = new Cleric();
+		Creature f1 = cat.getCreature("Fighter");
+		Creature r1 = cat.getCreature("Ranger");
+		Creature c1 = cat.getCreature("Cleric");
 		
-		Zombie z1 = new Zombie();
-		Zombie z2 = new Zombie();
-		Zombie z3 = new Zombie();
+		Creature z1 = new Zombie();
+		Creature z2 = new Zombie();
+		Creature z3 = new Zombie();
 		
-		ba.CreateArena(new TeamCreatures(f1, r1, c1), new TeamCreatures(z1, z2, z3));
+		ba.CreateArena(new TeamCreatures(f1,r1,c1),	new TeamCreatures(z1,z2,z3));
 		
 		Test windowBattle = new Test();
 		windowBattle.setVisible(true);

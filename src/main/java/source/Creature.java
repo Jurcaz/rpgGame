@@ -3,10 +3,13 @@ package source;
 import java.awt.Color;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import util.UtilBattle;
 
 public abstract class Creature {
+	
+	private int id;
 	
 	private int maxHp;
 	private int actualHp;
@@ -30,12 +33,14 @@ public abstract class Creature {
 	private boolean pj;
 	
 	private JButton bttn;
+	private JPanel panel;
 
 	public Creature() {
 	}
 
-	public Creature(int maxHp, int strPunt, int dexPunt, int conPunt, int intPunt,	int sabPunt, int chaPunt, Item weapon, Item armor, String sprite, boolean pj) {
+	public Creature(int id, int maxHp, int strPunt, int dexPunt, int conPunt, int intPunt,	int sabPunt, int chaPunt, Item weapon, Item armor, String sprite, boolean pj) {
 		super();
+		this.id = id;
 		this.maxHp = maxHp;
 		this.actualHp = maxHp;
 		this.iniciative = 0;
@@ -116,6 +121,9 @@ public abstract class Creature {
 		return 0;
 	}
 	
+	public int getId() {
+		return id;
+	}
 
 	public int getMaxHp() {
 		return maxHp;
@@ -249,12 +257,24 @@ public abstract class Creature {
 		this.bttn = bttn;
 	}
 	
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
 	public void markButton() {
 		this.bttn.setBackground(new Color(255, 0, 0));
 	}
 	
 	public void unmarkButton() {
 		this.bttn.setBackground(null);
+	}
+	
+	public void updateHpBar() {
+		this.panel.setBounds(this.panel.getX(), this.panel.getY(), (this.actualHp * 90) / this.maxHp, this.panel.getHeight());
 	}
 	
 	public int compareTo(Creature o) {

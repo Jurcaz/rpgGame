@@ -2,6 +2,7 @@ package util;
 
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import gui.Test;
 import source.Creature;
@@ -91,13 +92,15 @@ public class BattleArena {
 		return mobsList.get(auxMob).getSprite();
 	}
 	
-	public void setJbuttonHero(JButton b) {
+	public void setJbuttonHero(JButton b, JPanel p) {
 		this.herosList.get(auxHero).setBttn(b);
+		this.herosList.get(auxHero).setPanel(p);
 		auxHero++;
 	}
 	
-	public void setJbuttonMob(JButton b) {
+	public void setJbuttonMob(JButton b, JPanel p) {
 		this.mobsList.get(auxMob).setBttn(b);
+		this.mobsList.get(auxMob).setPanel(p);
 		auxMob++;
 	}
 	
@@ -149,12 +152,15 @@ public class BattleArena {
 		if(getCreatureOnTurn().isPj()) {
 			if(getCreatureOnTurn().getWeapon().isHeal()) {
 				UtilBattle.attackCreature(getCreatureOnTurn(), herosList.get(objetive));
+				herosList.get(objetive).updateHpBar();
 			} else {
 				UtilBattle.attackCreature(getCreatureOnTurn(), mobsList.get(objetive));
+				mobsList.get(objetive).updateHpBar();
 			}
-			
 		} else {
-			UtilBattle.attackCreature(getCreatureOnTurn(), herosList.get(UtilBattle.randomTarget()));
+			int aux = UtilBattle.randomTarget();
+			UtilBattle.attackCreature(getCreatureOnTurn(), herosList.get(aux));
+			herosList.get(aux).updateHpBar();
 		}
 		
 		Test.setHpContextual(showHp());
@@ -208,6 +214,10 @@ public class BattleArena {
 
 	public void setTurn(int turn) {
 		this.turn = turn;
+	}
+	
+	public int buildHpBar() {
+		return 0;
 	}
 	
 }
