@@ -232,18 +232,18 @@ public class Test extends JFrame {
 	
 	public static void setSprites() {
 		hero1Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonHero()));
-			ba.setJbuttonHero(hero1Btn, greenBarHero1);
+			ba.setSwingHero(hero1Btn, greenBarHero1);
 		hero2Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonHero()));
-			ba.setJbuttonHero(hero2Btn, greenBarHero2);
+			ba.setSwingHero(hero2Btn, greenBarHero2);
 		hero3Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonHero()));
-			ba.setJbuttonHero(hero3Btn, greenBarHero3);
+			ba.setSwingHero(hero3Btn, greenBarHero3);
 		
 		mob1Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonMob()));
-			ba.setJbuttonMob(mob1Btn, greenBarMob1);
+			ba.setSwingMob(mob1Btn, greenBarMob1);
 		mob2Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonMob()));
-			ba.setJbuttonMob(mob2Btn, greenBarMob2);
+			ba.setSwingMob(mob2Btn, greenBarMob2);
 		mob3Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonMob()));
-			ba.setJbuttonMob(mob3Btn, greenBarMob3);
+			ba.setSwingMob(mob3Btn, greenBarMob3);
 	}
 	
 	public static void setHpContextual(String str) {

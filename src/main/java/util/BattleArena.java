@@ -92,13 +92,13 @@ public class BattleArena {
 		return mobsList.get(auxMob).getSprite();
 	}
 	
-	public void setJbuttonHero(JButton b, JPanel p) {
+	public void setSwingHero(JButton b, JPanel p) {
 		this.herosList.get(auxHero).setBttn(b);
 		this.herosList.get(auxHero).setPanel(p);
 		auxHero++;
 	}
 	
-	public void setJbuttonMob(JButton b, JPanel p) {
+	public void setSwingMob(JButton b, JPanel p) {
 		this.mobsList.get(auxMob).setBttn(b);
 		this.mobsList.get(auxMob).setPanel(p);
 		auxMob++;
@@ -148,26 +148,47 @@ public class BattleArena {
 	//----------------------------Turn-----------------------------//
 	
 	public void endTurn() {
-		
-		if(getCreatureOnTurn().isPj()) {
+		//variable para los monstruos
+		int aux = 0;
+		//turno de los heroes
+		if(getCreatureOnTurn().isPj() && getCreatureOnTurn().alive()) {
+			//heroes curan
 			if(getCreatureOnTurn().getWeapon().isHeal()) {
 				UtilBattle.attackCreature(getCreatureOnTurn(), herosList.get(objetive));
 				herosList.get(objetive).updateHpBar();
+			//heroes atacan
 			} else {
 				UtilBattle.attackCreature(getCreatureOnTurn(), mobsList.get(objetive));
 				mobsList.get(objetive).updateHpBar();
 			}
-		} else {
-			int aux = UtilBattle.randomTarget();
+		//turno de los monstruos
+		//monstruos atacan
+		} else if(!getCreatureOnTurn().isPj() && getCreatureOnTurn().alive()) {
+			aux = UtilBattle.randomTarget();
 			UtilBattle.attackCreature(getCreatureOnTurn(), herosList.get(aux));
 			herosList.get(aux).updateHpBar();
 		}
 		
+		//muestra la vida exacta 
 		Test.setHpContextual(showHp());
 		
+		//desmarca a la criatura 
 		unmarkCreatureOnTurn();
+		
+		
+		//si han muerto criaturas se retiran de la lista de iniciativa
+		if(!herosList.get(aux).alive()) {
+			listIniciative.remove(herosList.get(aux));
+		}
+		if(!mobsList.get(objetive).alive()) {
+			listIniciative.remove(mobsList.get(objetive));
+		}
+		
+		//pasa el turno y marca a la siguiente criatura
+		//es importante que se realice en este orden para que si a muerto una criatura se retire antes de marcarla
 		nextTurn();
 		markCreatureOnTurn();
+		
 	}
 
 	//-----------------------GettersSetters------------------------//
