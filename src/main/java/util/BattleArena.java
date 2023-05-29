@@ -32,10 +32,9 @@ public class BattleArena {
 	
 	private int objetive;
 	
-	private int auxHero;
-	private int auxMob;
-	
 	private boolean finishGame;
+	
+	private boolean switchRequest;
 	
 	//------------------------------Constructor------------------------------//
 	
@@ -44,8 +43,7 @@ public class BattleArena {
 		this.finishGame = false;
 		this.turn = 0;
 		this.objetive = 0;
-		this.auxHero = 0;
-		this.auxMob = 0;
+		this.switchRequest = false;
 		
 		for(int i = 0 ; i<3 ; i++) {
 			this.herosList.add(pHeros.getList()[i]);
@@ -66,42 +64,36 @@ public class BattleArena {
 	
 	//-----------------------Lista iniciativa metodos--------------------//
 	
-	public Creature getCreatureOnTurn() {
+	private Creature getCreatureOnTurn() {
 		return listIniciative.get(turn);
 	}
 	
-	public void nextTurn() {
+	private void nextTurn() {
 		if(turn >= (listIniciative.size()-1)) { turn=0; } else { turn++; }
 	}
 	
-	public int getTurn() {
+	private int getTurn() {
 		return turn;
 	}
 	
 	//------------------------------Metodos------------------------------//
 	
-	public ArrayList<Creature> getIniciativeList() {
-		return listIniciative;
+	public String metodoSpriteBotonHero(int aux) {
+		return herosList.get(aux).getSprite();
 	}
 	
-	public String metodoSpriteBotonHero() {
-		return herosList.get(auxHero).getSprite();
+	public String metodoSpriteBotonMob(int aux) {
+		return mobsList.get(aux).getSprite();
 	}
 	
-	public String metodoSpriteBotonMob() {
-		return mobsList.get(auxMob).getSprite();
+	public void setSwingHero(JButton b, JPanel p, int aux) {
+		this.herosList.get(aux).setBttn(b);
+		this.herosList.get(aux).setPanel(p);
 	}
 	
-	public void setSwingHero(JButton b, JPanel p) {
-		this.herosList.get(auxHero).setBttn(b);
-		this.herosList.get(auxHero).setPanel(p);
-		auxHero++;
-	}
-	
-	public void setSwingMob(JButton b, JPanel p) {
-		this.mobsList.get(auxMob).setBttn(b);
-		this.mobsList.get(auxMob).setPanel(p);
-		auxMob++;
+	public void setSwingMob(JButton b, JPanel p, int aux) {
+		this.mobsList.get(aux).setBttn(b);
+		this.mobsList.get(aux).setPanel(p);
 	}
 	
 	private boolean heroesAlive() {
@@ -137,12 +129,33 @@ public class BattleArena {
 		getCreatureOnTurn().unmarkButton();
 	}
 	
-	public Creature getHero(int i) {
-		return this.herosList.get(i);
+	public String getHpStringHero(int aux) {
+		switch (aux) {
+		case 1: return herosList.get(0).getActualHp() +"/"+ herosList.get(0).getMaxHp();
+		case 2:	return herosList.get(1).getActualHp() +"/"+ herosList.get(1).getMaxHp();
+		case 3:	return herosList.get(2).getActualHp() +"/"+ herosList.get(2).getMaxHp();
+		}
+		return "";
 	}
 	
-	public Creature getMob(int i) {
-		return this.mobsList.get(i);
+	public String getHpStringMob(int aux) {
+		switch (aux) {
+		case 1: return mobsList.get(0).getActualHp() +"/"+ mobsList.get(0).getMaxHp();
+		case 2:	return mobsList.get(1).getActualHp() +"/"+ mobsList.get(1).getMaxHp();
+		case 3:	return mobsList.get(2).getActualHp() +"/"+ mobsList.get(2).getMaxHp();
+		}
+		return "";
+	}
+	
+	public void cambioPosiciones(int x, int y) {
+		if(this.switchRequest) {
+			herosList.set(y, herosList.get(x));
+			herosList.remove(x);
+			
+			this.switchRequest = false;
+		} else {
+			this.switchRequest = true;
+		}
 	}
 
 	//----------------------------Turn-----------------------------//
@@ -170,7 +183,7 @@ public class BattleArena {
 		}
 		
 		//muestra la vida exacta 
-		Test.setHpContextual(showHp());
+		Test.setHp();
 		
 		//desmarca a la criatura 
 		unmarkCreatureOnTurn();
