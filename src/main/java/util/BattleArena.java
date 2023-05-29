@@ -157,6 +157,30 @@ public class BattleArena {
 			this.switchRequest = true;
 		}
 	}
+	
+	public String getIniciativeOrder1() {
+		return listIniciative.get(0).getClass().getSimpleName();
+	}
+	
+	public String getIniciativeOrder2() {
+		return listIniciative.get(1).getClass().getSimpleName();
+	}
+	
+	public String getIniciativeOrder3() {
+		return listIniciative.get(2).getClass().getSimpleName();
+	}
+	
+	public String getIniciativeOrder4() {
+		return listIniciative.get(3).getClass().getSimpleName();
+	}
+	
+	public String getIniciativeOrder5() {
+		return listIniciative.get(4).getClass().getSimpleName();
+	}
+	
+	public String getIniciativeOrder6() {
+		return listIniciative.get(5).getClass().getSimpleName();
+	}
 
 	//----------------------------Turn-----------------------------//
 	

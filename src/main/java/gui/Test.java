@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
 
 public class Test extends JFrame {
 	
@@ -45,6 +46,7 @@ public class Test extends JFrame {
 	static private JLabel hero2HpLbl;
 	static private JLabel hero3HpLbl;
 	
+	
 	static private JPanel mobPanel;
 		
 	static private JButton mob1Btn;
@@ -63,13 +65,22 @@ public class Test extends JFrame {
 	static private JLabel mob2HpLbl;
 	static private JLabel mob3HpLbl;
 	
+	
 	static private JPanel contextualPanel;
 	
 	static private JTextArea contextualTextArea;
 	
 	static private JButton finishTurnBtn;
-	private JPanel iniciativePanel;
-	private JLabel lblNewLabel;
+	
+	
+	static private JPanel iniciativePanel;
+	
+	static private JLabel iniciativeOrderlbl1;
+	static private JLabel iniciativeOrderlbl2;
+	static private JLabel iniciativeOrderlbl3;
+	static private JLabel iniciativeOrderlbl4;
+	static private JLabel iniciativeOrderlbl5;
+	static private JLabel iniciativeOrderlbl6;
 
 	public Test() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,10 +94,31 @@ public class Test extends JFrame {
 		iniciativePanel = new JPanel();
 		iniciativePanel.setBounds(5, 0, 614, 35);
 		contentPane.add(iniciativePanel);
-		iniciativePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		iniciativePanel.setLayout(new GridLayout(0, 6, 0, 0));
 		
-		lblNewLabel = new JLabel("New label");
-		iniciativePanel.add(lblNewLabel);
+		iniciativeOrderlbl1 = new JLabel("");
+		iniciativeOrderlbl1.setHorizontalAlignment(SwingConstants.CENTER);
+		iniciativePanel.add(iniciativeOrderlbl1);
+		
+		iniciativeOrderlbl2 = new JLabel("");
+		iniciativeOrderlbl2.setHorizontalAlignment(SwingConstants.CENTER);
+		iniciativePanel.add(iniciativeOrderlbl2);
+		
+		iniciativeOrderlbl3 = new JLabel("");
+		iniciativeOrderlbl3.setHorizontalAlignment(SwingConstants.CENTER);
+		iniciativePanel.add(iniciativeOrderlbl3);
+		
+		iniciativeOrderlbl4 = new JLabel("");
+		iniciativeOrderlbl4.setHorizontalAlignment(SwingConstants.CENTER);
+		iniciativePanel.add(iniciativeOrderlbl4);
+		
+		iniciativeOrderlbl5 = new JLabel("");
+		iniciativeOrderlbl5.setHorizontalAlignment(SwingConstants.CENTER);
+		iniciativePanel.add(iniciativeOrderlbl5);
+		
+		iniciativeOrderlbl6 = new JLabel("");
+		iniciativeOrderlbl6.setHorizontalAlignment(SwingConstants.CENTER);
+		iniciativePanel.add(iniciativeOrderlbl6);
 		
 		battlePanel = new JPanel();
 		battlePanel.setBounds(5, 35, 614, 252);
@@ -229,6 +261,7 @@ public class Test extends JFrame {
 		setSprites();
 		buttonsActions();
 		hpBarEvents();
+		setIniciativeOrder();
 		
 		markCreatureOnTurn();
 		setHp();
@@ -312,43 +345,71 @@ public class Test extends JFrame {
 		hero1Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ba.setObjetive(0);
-				hero1Btn.setEnabled(false);
+				hero1Btn.setBackground(Color.green);
+				hero2Btn.setBackground(null);
+				hero3Btn.setBackground(null);
 			}
 		});
 		
 		hero2Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ba.setObjetive(1);
+				hero1Btn.setBackground(null);
+				hero2Btn.setBackground(Color.green);
+				hero3Btn.setBackground(null);
 			}
 		});
 		
 		hero3Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ba.setObjetive(2);
+				hero1Btn.setBackground(null);
+				hero2Btn.setBackground(null);
+				hero3Btn.setBackground(Color.green);
 			}
 		});
 		
 		mob1Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ba.setObjetive(0);
+				
+				mob1Btn.setBackground(Color.green);
+				mob2Btn.setBackground(null);
+				mob3Btn.setBackground(null);
 			}
 		});
 		
 		mob2Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ba.setObjetive(1);
+				
+				mob1Btn.setBackground(null);
+				mob2Btn.setBackground(Color.green);
+				mob3Btn.setBackground(null);
 			}
 		});
 		
 		mob3Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ba.setObjetive(2);
+				
+				mob1Btn.setBackground(null);
+				mob2Btn.setBackground(null);
+				mob3Btn.setBackground(Color.green);
 			}
 		});
 		
 		finishTurnBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ba.endTurn();
+				hero1Btn.setBackground(null);
+				hero2Btn.setBackground(null);
+				hero3Btn.setBackground(null);
+				
+				mob1Btn.setBackground(null);
+				mob2Btn.setBackground(null);
+				mob3Btn.setBackground(null);
+				
+				ba.endTurn();			
 			}
 		});
 	}
@@ -377,6 +438,15 @@ public class Test extends JFrame {
 		mob1HpLbl.setText(ba.getHpStringMob(1));
 		mob2HpLbl.setText(ba.getHpStringMob(2));
 		mob3HpLbl.setText(ba.getHpStringMob(3));
+	}
+	
+	public static void setIniciativeOrder() {
+		iniciativeOrderlbl1.setText(ba.getIniciativeOrder1());
+		iniciativeOrderlbl2.setText(ba.getIniciativeOrder2());
+		iniciativeOrderlbl3.setText(ba.getIniciativeOrder3());
+		iniciativeOrderlbl4.setText(ba.getIniciativeOrder4());
+		iniciativeOrderlbl5.setText(ba.getIniciativeOrder5());
+		iniciativeOrderlbl6.setText(ba.getIniciativeOrder6());
 	}
 	
 	public static void markCreatureOnTurn() {
