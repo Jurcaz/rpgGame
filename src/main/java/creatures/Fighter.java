@@ -9,5 +9,9 @@ public class Fighter extends Creature {
 	public Fighter() {
 		super(1,50,16,12,16,10,12,12,new LongSword(), new HeavyArmor(), "src\\main\\resources\\creatures\\crusader.png", true);
 	}
+	
+	public void ability_1(int i) {
+		
+	}
 
 }

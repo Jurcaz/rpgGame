@@ -17,6 +17,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
+import java.awt.GridBagLayout;
+import java.awt.Rectangle;
 
 public class Test extends JFrame {
 	
@@ -68,8 +70,6 @@ public class Test extends JFrame {
 	
 	static private JPanel contextualPanel;
 	
-	static private JTextArea contextualTextArea;
-	
 	static private JButton finishTurnBtn;
 	
 	
@@ -81,6 +81,12 @@ public class Test extends JFrame {
 	static private JLabel iniciativeOrderlbl4;
 	static private JLabel iniciativeOrderlbl5;
 	static private JLabel iniciativeOrderlbl6;
+	private JPanel actionsCharacterPanel;
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
+	private JButton btnNewButton_3;
+	private JButton btnNewButton_4;
 
 	public Test() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -252,8 +258,29 @@ public class Test extends JFrame {
 		contentPane.add(contextualPanel);
 		contextualPanel.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		contextualTextArea = new JTextArea();
-		contextualPanel.add(contextualTextArea);
+		actionsCharacterPanel = new JPanel();
+		contextualPanel.add(actionsCharacterPanel);
+		actionsCharacterPanel.setLayout(null);
+		
+		btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(57,9,40,40);
+		actionsCharacterPanel.add(btnNewButton);
+		
+		btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(107, 9, 40, 40);
+		actionsCharacterPanel.add(btnNewButton_1);
+		
+		btnNewButton_2 = new JButton("New button");
+		btnNewButton_2.setBounds(207, 9, 40, 40);
+		actionsCharacterPanel.add(btnNewButton_2);
+		
+		btnNewButton_3 = new JButton("New button");
+		btnNewButton_3.setBounds(157, 9, 40, 40);
+		actionsCharacterPanel.add(btnNewButton_3);
+		
+		btnNewButton_4 = new JButton("New button");
+		btnNewButton_4.setBounds(257, 9, 40, 40);
+		actionsCharacterPanel.add(btnNewButton_4);
 		
 		finishTurnBtn = new JButton("Finish Turn");
 		contextualPanel.add(finishTurnBtn);
@@ -344,7 +371,7 @@ public class Test extends JFrame {
 	private void buttonsActions() {
 		hero1Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ba.setObjetive(0);
+				ba.setObjetiveHeros(0);
 				hero1Btn.setBackground(Color.green);
 				hero2Btn.setBackground(null);
 				hero3Btn.setBackground(null);
@@ -353,7 +380,7 @@ public class Test extends JFrame {
 		
 		hero2Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ba.setObjetive(1);
+				ba.setObjetiveHeros(1);
 				hero1Btn.setBackground(null);
 				hero2Btn.setBackground(Color.green);
 				hero3Btn.setBackground(null);
@@ -362,7 +389,7 @@ public class Test extends JFrame {
 		
 		hero3Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ba.setObjetive(2);
+				ba.setObjetiveHeros(2);
 				hero1Btn.setBackground(null);
 				hero2Btn.setBackground(null);
 				hero3Btn.setBackground(Color.green);
@@ -371,7 +398,7 @@ public class Test extends JFrame {
 		
 		mob1Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ba.setObjetive(0);
+				ba.setObjetiveMobs(0);
 				
 				mob1Btn.setBackground(Color.green);
 				mob2Btn.setBackground(null);
@@ -381,7 +408,7 @@ public class Test extends JFrame {
 		
 		mob2Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ba.setObjetive(1);
+				ba.setObjetiveMobs(1);
 				
 				mob1Btn.setBackground(null);
 				mob2Btn.setBackground(Color.green);
@@ -391,7 +418,7 @@ public class Test extends JFrame {
 		
 		mob3Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ba.setObjetive(2);
+				ba.setObjetiveMobs(2);
 				
 				mob1Btn.setBackground(null);
 				mob2Btn.setBackground(null);

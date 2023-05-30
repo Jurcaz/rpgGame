@@ -30,7 +30,8 @@ public class BattleArena {
 	
 	private int turn;
 	
-	private int objetive;
+	private int objetiveHeros;
+	private int objetiveMobs;
 	
 	private boolean finishGame;
 	
@@ -42,7 +43,8 @@ public class BattleArena {
 	
 		this.finishGame = false;
 		this.turn = 0;
-		this.objetive = 0;
+		this.objetiveHeros = 0;
+		this.objetiveMobs = 0;
 		this.switchRequest = false;
 		
 		for(int i = 0 ; i<3 ; i++) {
@@ -117,8 +119,12 @@ public class BattleArena {
 				"Zombie 3 HP - " + mobsList.get(2).getActualHp() +"/"+ mobsList.get(2).getMaxHp()+"\n";
 	}
 	
-	public void setObjetive(int i) {
-		this.objetive = i;
+	public void setObjetiveHeros(int i) {
+		this.objetiveHeros = i;
+	}
+	
+	public void setObjetiveMobs(int i) {
+		this.objetiveMobs = i;
 	}
 	
 	public void markCreatureOnTurn() {
@@ -191,12 +197,12 @@ public class BattleArena {
 		if(getCreatureOnTurn().isPj() && getCreatureOnTurn().alive()) {
 			//heroes curan
 			if(getCreatureOnTurn().getWeapon().isHeal()) {
-				UtilBattle.attackCreature(getCreatureOnTurn(), herosList.get(objetive));
-				herosList.get(objetive).updateHpBar();
+				UtilBattle.attackCreature(getCreatureOnTurn(), herosList.get(objetiveHeros));
+				herosList.get(objetiveHeros).updateHpBar();
 			//heroes atacan
 			} else {
-				UtilBattle.attackCreature(getCreatureOnTurn(), mobsList.get(objetive));
-				mobsList.get(objetive).updateHpBar();
+				UtilBattle.attackCreature(getCreatureOnTurn(), mobsList.get(objetiveMobs));
+				mobsList.get(objetiveMobs).updateHpBar();
 			}
 		//turno de los monstruos
 		//monstruos atacan
@@ -217,8 +223,8 @@ public class BattleArena {
 		if(!herosList.get(aux).alive()) {
 			listIniciative.remove(herosList.get(aux));
 		}
-		if(!mobsList.get(objetive).alive()) {
-			listIniciative.remove(mobsList.get(objetive));
+		if(!mobsList.get(objetiveMobs).alive()) {
+			listIniciative.remove(mobsList.get(objetiveMobs));
 		}
 		
 		//pasa el turno y marca a la siguiente criatura
@@ -262,8 +268,12 @@ public class BattleArena {
 		this.finishGame = finishGame;
 	}
 
-	public int getObjetive() {
-		return objetive;
+	public int getObjetiveHero() {
+		return objetiveHeros;
+	}
+	
+	public int getObjetiveMob() {
+		return objetiveMobs;
 	}
 
 	public static void setInstance(BattleArena instance) {

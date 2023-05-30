@@ -138,7 +138,6 @@ public abstract class Creature {
 	}
 
 	public void setActualHp(int actualHp) {
-		
 		if(this.actualHp + actualHp <= 0) {
 			this.actualHp = 0;
 		} else if(this.actualHp + actualHp >= this.maxHp) {
@@ -277,13 +276,8 @@ public abstract class Creature {
 		this.panel.setBounds(this.panel.getX(), this.panel.getY(), (this.actualHp * 90) / this.maxHp, this.panel.getHeight());
 	}
 	
-	public int compareTo(Creature o) {
-		if (this.iniciative > o.iniciative) {
-			return -1;
-		} else if (this.iniciative < o.iniciative) {
-			return 1;
-		}
-		return 0;
+	public void ability_1() {
+		
 	}
 	
 }
