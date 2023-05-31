@@ -1,6 +1,8 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -23,10 +25,10 @@ public class BattleArena {
 	
 	//------------------------------Atributos------------------------------//
 	
-	private ArrayList<Creature> listIniciative = new ArrayList<Creature>();
+	private List<Creature> listIniciative = new ArrayList<Creature>();
 		
-	private ArrayList<Creature> herosList = new ArrayList<Creature>();
-	private ArrayList<Creature> mobsList = new ArrayList<Creature>();
+	private List<Creature> herosList = new ArrayList<Creature>();
+	private List<Creature> mobsList = new ArrayList<Creature>();
 	
 	private int turn;
 	
@@ -153,15 +155,18 @@ public class BattleArena {
 		return "";
 	}
 	
-	public void cambioPosiciones(int x, int y) {
-		if(this.switchRequest) {
-			herosList.set(y, herosList.get(x));
-			herosList.remove(x);
+	public void changeRequest() {
+		this.switchRequest = true;
+	}
+	
+	public void changePositions(int x) {
+		if(this.switchRequest) { 
+			herosList.add(x, herosList.remove(herosList.lastIndexOf(getCreatureOnTurn())));
 			
 			this.switchRequest = false;
-		} else {
-			this.switchRequest = true;
-		}
+		} 
+		
+		Test.setSprites();
 	}
 	
 	public String getIniciativeOrder1() {
@@ -236,27 +241,27 @@ public class BattleArena {
 
 	//-----------------------GettersSetters------------------------//
 	
-	public ArrayList<Creature> getListIniciative() {
+	public List<Creature> getListIniciative() {
 		return listIniciative;
 	}
 
-	public void setListIniciative(ArrayList<Creature> listIniciative) {
+	public void setListIniciative(List<Creature> listIniciative) {
 		this.listIniciative = listIniciative;
 	}
 
-	public ArrayList<Creature> getHeros() {
+	public List<Creature> getHeros() {
 		return herosList;
 	}
 
-	public void setHeros(ArrayList<Creature> heros) {
+	public void setHeros(List<Creature> heros) {
 		this.herosList = heros;
 	}
 
-	public ArrayList<Creature> getMobs() {
+	public List<Creature> getMobs() {
 		return mobsList;
 	}
 
-	public void setMobs(ArrayList<Creature> mobs) {
+	public void setMobs(List<Creature> mobs) {
 		this.mobsList = mobs;
 	}
 
@@ -275,11 +280,7 @@ public class BattleArena {
 	public int getObjetiveMob() {
 		return objetiveMobs;
 	}
-
-	public static void setInstance(BattleArena instance) {
-		BattleArena.instance = instance;
-	}
-
+	
 	public void setTurn(int turn) {
 		this.turn = turn;
 	}

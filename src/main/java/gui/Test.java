@@ -81,12 +81,15 @@ public class Test extends JFrame {
 	static private JLabel iniciativeOrderlbl4;
 	static private JLabel iniciativeOrderlbl5;
 	static private JLabel iniciativeOrderlbl6;
-	private JPanel actionsCharacterPanel;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
-	private JButton btnNewButton_2;
-	private JButton btnNewButton_3;
-	private JButton btnNewButton_4;
+	
+	
+	static private JPanel actionsCharacterPanel;
+	
+	static private JButton changePositionBtn;
+	static private JButton ability1btn;
+	static private JButton ability2btn;
+	static private JButton abilit31btn;
+	static private JButton ability4btn;
 
 	public Test() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -149,16 +152,19 @@ public class Test extends JFrame {
 		
 		hero1HpLbl = new JLabel("");
 		hero1HpLbl.setVisible(false);
+		hero1HpLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		hero1HpLbl.setBounds(207, 11, 90, 19);
 		heroPanel.add(hero1HpLbl);
 		
 		hero2HpLbl = new JLabel("");
 		hero2HpLbl.setVisible(false);
+		hero2HpLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		hero2HpLbl.setBounds(107, 11, 90, 19);
 		heroPanel.add(hero2HpLbl);
 		
 		hero3HpLbl = new JLabel("");
 		hero3HpLbl.setVisible(false);
+		hero3HpLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		hero3HpLbl.setBounds(7, 11, 90, 19);
 		heroPanel.add(hero3HpLbl);
 		
@@ -210,16 +216,19 @@ public class Test extends JFrame {
 		
 		mob1HpLbl = new JLabel("");
 		mob1HpLbl.setVisible(false);
+		mob1HpLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		mob1HpLbl.setBounds(10, 11, 90, 19);
 		mobPanel.add(mob1HpLbl);
 		
 		mob2HpLbl = new JLabel("");
 		mob2HpLbl.setVisible(false);
+		mob2HpLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		mob2HpLbl.setBounds(110, 11, 90, 19);
 		mobPanel.add(mob2HpLbl);
 		
 		mob3HpLbl = new JLabel("");
 		mob3HpLbl.setVisible(false);
+		mob3HpLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		mob3HpLbl.setBounds(210, 11, 90, 19);
 		mobPanel.add(mob3HpLbl);
 		
@@ -262,25 +271,25 @@ public class Test extends JFrame {
 		contextualPanel.add(actionsCharacterPanel);
 		actionsCharacterPanel.setLayout(null);
 		
-		btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(57,9,40,40);
-		actionsCharacterPanel.add(btnNewButton);
+		changePositionBtn = new JButton("New button");
+		changePositionBtn.setBounds(57,9,40,40);
+		actionsCharacterPanel.add(changePositionBtn);
 		
-		btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(107, 9, 40, 40);
-		actionsCharacterPanel.add(btnNewButton_1);
+		ability1btn = new JButton("New button");
+		ability1btn.setBounds(107, 9, 40, 40);
+		actionsCharacterPanel.add(ability1btn);
 		
-		btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setBounds(207, 9, 40, 40);
-		actionsCharacterPanel.add(btnNewButton_2);
+		ability2btn = new JButton("New button");
+		ability2btn.setBounds(207, 9, 40, 40);
+		actionsCharacterPanel.add(ability2btn);
 		
-		btnNewButton_3 = new JButton("New button");
-		btnNewButton_3.setBounds(157, 9, 40, 40);
-		actionsCharacterPanel.add(btnNewButton_3);
+		abilit31btn = new JButton("New button");
+		abilit31btn.setBounds(157, 9, 40, 40);
+		actionsCharacterPanel.add(abilit31btn);
 		
-		btnNewButton_4 = new JButton("New button");
-		btnNewButton_4.setBounds(257, 9, 40, 40);
-		actionsCharacterPanel.add(btnNewButton_4);
+		ability4btn = new JButton("New button");
+		ability4btn.setBounds(257, 9, 40, 40);
+		actionsCharacterPanel.add(ability4btn);
 		
 		finishTurnBtn = new JButton("Finish Turn");
 		contextualPanel.add(finishTurnBtn);
@@ -372,6 +381,7 @@ public class Test extends JFrame {
 		hero1Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ba.setObjetiveHeros(0);
+				ba.changePositions(0);
 				hero1Btn.setBackground(Color.green);
 				hero2Btn.setBackground(null);
 				hero3Btn.setBackground(null);
@@ -381,6 +391,7 @@ public class Test extends JFrame {
 		hero2Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ba.setObjetiveHeros(1);
+				ba.changePositions(1);
 				hero1Btn.setBackground(null);
 				hero2Btn.setBackground(Color.green);
 				hero3Btn.setBackground(null);
@@ -390,6 +401,7 @@ public class Test extends JFrame {
 		hero3Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ba.setObjetiveHeros(2);
+				ba.changePositions(2);
 				hero1Btn.setBackground(null);
 				hero2Btn.setBackground(null);
 				hero3Btn.setBackground(Color.green);
@@ -426,6 +438,12 @@ public class Test extends JFrame {
 			}
 		});
 		
+		ability4btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ba.changeRequest();
+			}
+		});
+		
 		finishTurnBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				hero1Btn.setBackground(null);
@@ -436,7 +454,9 @@ public class Test extends JFrame {
 				mob2Btn.setBackground(null);
 				mob3Btn.setBackground(null);
 				
-				ba.endTurn();			
+				ba.endTurn();	
+				
+				
 			}
 		});
 	}

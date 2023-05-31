@@ -28,8 +28,6 @@ public abstract class Creature {
 	
 	protected String sprite;
 	
-	private boolean turn;
-	
 	private boolean pj;
 	
 	private JButton bttn;
@@ -53,7 +51,6 @@ public abstract class Creature {
 		this.weapon = weapon;
 		this.armor = armor;
 		this.sprite = sprite;
-		this.turn = false;
 		this.pj = pj;
 	}
 
@@ -217,14 +214,6 @@ public abstract class Creature {
 
 	public void setArmor(Item armor) {
 		this.armor = armor;
-	}
-	
-	public boolean isTurn() {
-		return turn;
-	}
-
-	public void setTurn(boolean turn) {
-		this.turn = turn;
 	}
 	
 	public String getSprite() {
