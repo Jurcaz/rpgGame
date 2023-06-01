@@ -11,6 +11,8 @@ import creatures.Zombie;
 import gui.Test;
 import source.Creature;
 import source.TeamCreatures;
+import source.Weapon;
+import source.WeaponType;
 import util.BattleArena;
 import util.Catalogue;
 import util.IniciativeComparator;
@@ -24,6 +26,13 @@ public class Main {
 		Catalogue cat = Catalogue.getInstance();
 				
 		cat.instanceCatalogue();
+		cat.instanceWeapon();
+		
+//		for (Weapon w: cat.getInfoWeaponList()) {
+//			System.out.println(w.toString());
+//		}
+		
+		System.out.println(cat.getWeapon(WeaponType.MACE, 3));
 		
 		Creature f1 = cat.getCreature("Fighter");
 		Creature r1 = cat.getCreature("Ranger");

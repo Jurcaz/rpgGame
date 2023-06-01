@@ -1,6 +1,7 @@
 package util;
 
 import source.Creature;
+import source.Creature2;
 
 public class UtilBattle {
 	
@@ -103,6 +104,30 @@ public class UtilBattle {
 		} else {
 			if(c1.hit() >= c2.getArmor().getAc()) c2.setActualHp(c1.attack());
 			
+		}
+	}
+	
+	public static void rollIniciative(int x, Creature2 c) {
+		switch (x) {
+		case -1:
+			c.setIniciative(((Math.min(dOcho(), dOcho()))+c.getSpeed())*(0.1 * dDiez()));
+			break;
+		case 0:
+			c.setIniciative((UtilBattle.dOcho()+c.getSpeed())*(0.1 * UtilBattle.dDiez()));
+			break;
+		case 1:
+			c.setIniciative(((Math.max(dOcho(), dOcho()))+c.getSpeed())*(0.1 * dDiez()));
+			break;
+		}
+	}
+	
+	public static void modHp(Creature2 c, int x) {
+		if(c.getActualHp() + x <= 0) {
+			c.setActualHp(0);
+		} else if(c.getActualHp() + x >= c.getMaxHp()) {
+			c.setActualHp(c.getMaxHp());
+		} else {
+			c.setActualHp(c.getActualHp() + x);
 		}
 	}
 	
