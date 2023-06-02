@@ -271,24 +271,25 @@ public class Test extends JFrame {
 		contextualPanel.add(actionsCharacterPanel);
 		actionsCharacterPanel.setLayout(null);
 		
-		changePositionBtn = new JButton("New button");
-		changePositionBtn.setBounds(57,9,40,40);
+		changePositionBtn = new JButton("");
+		changePositionBtn.setBounds(257,9,40,40);
+		changePositionBtn.setIcon(new javax.swing.ImageIcon("src\\main\\resources\\icons\\changeIcon.png"));
 		actionsCharacterPanel.add(changePositionBtn);
 		
-		ability1btn = new JButton("New button");
-		ability1btn.setBounds(107, 9, 40, 40);
+		ability1btn = new JButton("");
+		ability1btn.setBounds(57, 9, 40, 40);
 		actionsCharacterPanel.add(ability1btn);
 		
-		ability2btn = new JButton("New button");
-		ability2btn.setBounds(207, 9, 40, 40);
+		ability2btn = new JButton("");
+		ability2btn.setBounds(107, 9, 40, 40);
 		actionsCharacterPanel.add(ability2btn);
 		
-		abilit31btn = new JButton("New button");
+		abilit31btn = new JButton("");
 		abilit31btn.setBounds(157, 9, 40, 40);
 		actionsCharacterPanel.add(abilit31btn);
 		
-		ability4btn = new JButton("New button");
-		ability4btn.setBounds(257, 9, 40, 40);
+		ability4btn = new JButton("");
+		ability4btn.setBounds(207, 9, 40, 40);
 		actionsCharacterPanel.add(ability4btn);
 		
 		finishTurnBtn = new JButton("Finish Turn");
@@ -438,7 +439,7 @@ public class Test extends JFrame {
 			}
 		});
 		
-		ability4btn.addActionListener(new ActionListener() {
+		changePositionBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ba.changeRequest();
 			}
@@ -455,8 +456,6 @@ public class Test extends JFrame {
 				mob3Btn.setBackground(null);
 				
 				ba.endTurn();	
-				
-				
 			}
 		});
 	}
