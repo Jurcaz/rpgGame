@@ -1,6 +1,10 @@
-package source;
+package persistence;
 
-public class Damage implements Ability{
+import source.DamageType;
+import source.HeroType;
+import source.Range;
+
+public class DamageDTO {
 
 	private DamageType skillName;
 	private HeroType heroType;
@@ -15,7 +19,7 @@ public class Damage implements Ability{
 	private String effect;
 	private String self;
 	
-	public Damage(DamageType skillName, HeroType heroType, Range range, boolean[] rank, boolean[] target, boolean allObjetives, int damageMod,	int accuracy, int critMod, String effect, String self) {
+	public DamageDTO(DamageType skillName, HeroType heroType, Range range, boolean[] rank, boolean[] target, boolean allObjetives, int damageMod, int accuracy, int critMod, String effect, String self) {
 		super();
 		this.skillName = skillName;
 		this.heroType = heroType;
@@ -73,5 +77,4 @@ public class Damage implements Ability{
 	public String getSelf() {
 		return self;
 	}
-	
 }

@@ -298,9 +298,9 @@ public class Test extends JFrame {
 		setSprites();
 		buttonsActions();
 		hpBarEvents();
-		setIniciativeOrder();
+		//setIniciativeOrder();
 		
-		markCreatureOnTurn();
+		//markCreatureOnTurn();
 		setHp();
 	}
 	
@@ -455,25 +455,28 @@ public class Test extends JFrame {
 				mob2Btn.setBackground(null);
 				mob3Btn.setBackground(null);
 				
-				ba.endTurn();	
+				//ba.endTurn();	
 			}
 		});
 	}
 	
 	public static void setSprites() {
+		/*
 		hero1Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonHero(0)));
-			ba.setSwingHero(hero1Btn, greenBarHero1Jp, 0);
 		hero2Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonHero(1)));
-			ba.setSwingHero(hero2Btn, greenBarHero2Jp, 1);
 		hero3Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonHero(2)));
-			ba.setSwingHero(hero3Btn, greenBarHero3Jp, 2);
 		
 		mob1Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonMob(0)));
-			ba.setSwingMob(mob1Btn, greenBarMob1Jp, 0);
 		mob2Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonMob(1)));
-			ba.setSwingMob(mob2Btn, greenBarMob2Jp, 1);
 		mob3Btn.setIcon(new javax.swing.ImageIcon(ba.metodoSpriteBotonMob(2)));
-			ba.setSwingMob(mob3Btn, greenBarMob3Jp, 2);
+		*/
+		hero1Btn.setName(ba.getNameHero(1));
+		hero2Btn.setName(ba.getNameHero(2));
+		hero3Btn.setName(ba.getNameHero(3));
+		
+		mob1Btn.setName(ba.getNameEnemy(1));
+		mob2Btn.setName(ba.getNameEnemy(2));
+		mob3Btn.setName(ba.getNameEnemy(3));
 	}
 	
 	public static void setHp() {

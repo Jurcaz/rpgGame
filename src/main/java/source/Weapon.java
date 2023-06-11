@@ -2,14 +2,14 @@ package source;
 
 public abstract class Weapon {
 	
-	protected String name;
-	protected int tier;
-	protected int damageMin;
-	protected int damageMax;
-	protected double critMod;
-	protected int speedMod;	
+	private String name;
+	private int tier;
+	private int damageMin;
+	private int damageMax;
+	private int critMod;
+	private int speedMod;	
 
-	public Weapon(String name, int tier, int damageMin, int damageMax, double critMod, int speedMod) {
+	public Weapon(String name, int tier, int damageMin, int damageMax, int critMod, int speedMod) {
 		super();
 		this.name = name;
 		this.tier = tier;
@@ -51,11 +51,11 @@ public abstract class Weapon {
 		this.damageMax = damageMax;
 	}
 
-	public double getCritMod() {
+	public int getCritMod() {
 		return critMod;
 	}
 
-	public void setCritMod(double critMod) {
+	public void setCritMod(int critMod) {
 		this.critMod = critMod;
 	}
 

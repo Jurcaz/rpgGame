@@ -1,7 +1,7 @@
 package util;
 
 import source.Creature;
-import source.Creature2;
+import source.Hero;
 
 public class UtilBattle {
 	
@@ -27,101 +27,28 @@ public class UtilBattle {
 	public static int dCuatro() {
 		return (int) (Math.random()*4)+1;
 	}
-	public static int randomTarget() {
-		return (int) (Math.random()*3);
+	public static int randomTarget(int aux) {
+		return (int) (Math.random()*aux)+1;
+	}
+	public static int damageCalc(int min, int max) {
+		return min + (int)(Math.random() * ((max - min) + 1));
 	}
 	
-	//calcula el bonificador de una abilidad
-	public static int obtenBon(int pBase) {
-		switch(pBase) {
-			case 1:
-				return -5;
-			case 2:
-				return -4;
-			case 3:
-				return -4;
-			case 4:
-				return -3;
-			case 5:
-				return -3;
-			case 6:
-				return -2;
-			case 7:
-				return -2;
-			case 8:
-				return -1;
-			case 9:
-				return -1;
-			case 10:
-				return 0;
-			case 11:
-				return 0;
-			case 12:
-				return +1;
-			case 13:
-				return +1;
-			case 14:
-				return +2;
-			case 15:
-				return +2;
-			case 16:
-				return +3;
-			case 17:
-				return +3;
-			case 18:
-				return +4;
-			case 19:
-				return +4;
-			case 20:
-				return +5;
-			case 21:
-				return +5;
-			case 22:
-				return +6;
-			case 23:
-				return +6;
-			case 24:
-				return +7;
-			case 25:
-				return +7;
-			case 26:
-				return +8;
-			case 27:
-				return +8;
-			case 28:
-				return +9;
-			case 29:
-				return +9;
-			case 30:
-				return +10;
-			default: return 0;
-		} 
-	}
-	
-	public static void attackCreature(Creature c1, Creature c2) {
-		if(c1.getWeapon().isHeal()) {
-			c2.setActualHp(c1.attack());
-		} else {
-			if(c1.hit() >= c2.getArmor().getAc()) c2.setActualHp(c1.attack());
-			
-		}
-	}
-	
-	public static void rollIniciative(int x, Creature2 c) {
+	public static void rollIniciative(int x, Creature c) {
 		switch (x) {
 		case -1:
-			c.setIniciative(((Math.min(dOcho(), dOcho()))+c.getSpeed())*(0.1 * dDiez()));
+			c.setInitiative(((Math.min(dOcho(), dOcho()))+c.getSpeed())*(0.1 * dDiez()));
 			break;
 		case 0:
-			c.setIniciative((UtilBattle.dOcho()+c.getSpeed())*(0.1 * UtilBattle.dDiez()));
+			c.setInitiative((UtilBattle.dOcho()+c.getSpeed())*(0.1 * UtilBattle.dDiez()));
 			break;
 		case 1:
-			c.setIniciative(((Math.max(dOcho(), dOcho()))+c.getSpeed())*(0.1 * dDiez()));
+			c.setInitiative(((Math.max(dOcho(), dOcho()))+c.getSpeed())*(0.1 * dDiez()));
 			break;
 		}
 	}
 	
-	public static void modHp(Creature2 c, int x) {
+	public static void modHp(Creature c, int x) {
 		if(c.getActualHp() + x <= 0) {
 			c.setActualHp(0);
 		} else if(c.getActualHp() + x >= c.getMaxHp()) {

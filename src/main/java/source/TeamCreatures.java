@@ -2,27 +2,27 @@ package source;
 
 public class TeamCreatures {
 	
-	private Creature[] creatures = {null,null,null};
+	private Hero[] hero = {null,null,null};
 	
-	public TeamCreatures(Creature c1, Creature c2, Creature c3) {
-		creatures[0] = c1;
-		creatures[1] = c2;
-		creatures[2] = c3;
+	public TeamCreatures(Hero c1, Hero c2, Hero c3) {
+		hero[0] = c1;
+		hero[1] = c2;
+		hero[2] = c3;
 	}
 
-	public Creature getPos1() {
-		return creatures[0];
+	public Hero getPos1() {
+		return hero[0];
 	}
 	
-	public Creature getPos2() {
-		return creatures[1];
+	public Hero getPos2() {
+		return hero[1];
 	}
 	
-	public Creature getPos3() {
-		return creatures[2];
+	public Hero getPos3() {
+		return hero[2];
 	}
 	
-	public Creature[] getList(){
-		return creatures;
+	public Hero[] getList(){
+		return hero;
 	}
 }

@@ -1,0 +1,17 @@
+#
+Smite;Crusader;Melee;true;true;false;false;true;true;false;false;false;0;85;0;15dmgvsunholy;null
+ZealousAccusation;Crusader;Ranged;true;true;false;false;true;true;false;false;true;-40;85;-4;null;null
+StunningBlow;Crusader;Melee;true;true;false;false;true;true;false;false;false;-50;90;0;stun100;null
+HolyLance;Crusader;Melee;true;true;false;false;false;true;true;true;false;0;85;7;15dmgvsunholy;forward1
+WickedSlice;Highwayman;Melee;true;true;true;false;true;true;false;false;false;15;85;5;null;null
+PistolShot;Highwayman;Ranged;false;true;true;true;false;true;true;true;false;-15;85;8;25dmgvsmarked;null
+PointBlankShot;Highwayman;Ranged;true;false;false;false;true;false;false;false;false;50;95;5;knockback1100;back1
+GrapeshotBlast;Highwayman;Ranged;false;true;true;false;true;true;true;false;true;-50;75;-9;4CritsReceived1003;null
+TrackingShot;Highwayman;Ranged;true;true;true;true;false;true;true;true;false;-80;95;0;Remove Stealth;6acc4crit12dmg99
+DuelistsAdvance;Highwayman;Melee;false;true;true;true;true;true;true;false;false;-20;90;5;null;forward1activatesriposte3
+OpenVein;Highwayman;Melee;true;true;true;false;true;true;false;false;false;-15;95;0;muchamierda;null
+MaceBash;Vestal;Melee;true;true;false;false;true;true;false;false;false;0;85;0;15dmgvsunholy;null
+Judgement;Vestal;Ranged;false;false;true;true;true;true;true;true;false;-25;85;5;null;heal5
+DazzlingLight;Vestal;Ranged;false;true;true;true;true;true;true;false;false;-75;90;5;Torch6Stun100;null
+Illumination;Vestal;Ranged;true;true;true;false;true;true;true;true;false;-75;90;0;removeStealthTorch5-20dodge1004;null
+HandofLight;Vestal;Ranged;true;true;false;false;true;true;true;false;false;-50;85;1;15dmgvsunholy;6acc425dmg4

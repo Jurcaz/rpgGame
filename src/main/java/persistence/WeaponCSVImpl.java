@@ -45,7 +45,7 @@ public class WeaponCSVImpl implements WeaponDAO{
 			while ((linea=br.readLine())!=null) {
 
 				aux = linea.split(";");
-				WeaponDTO auxWeapon = new WeaponDTO(WeaponType.valueOf(aux[0].toUpperCase()), Integer.parseInt(aux[1]), aux[2], Integer.parseInt(aux[3]), Integer.parseInt(aux[4]), Double.parseDouble(aux[5]), Integer.parseInt(aux[6]));
+				WeaponDTO auxWeapon = new WeaponDTO(WeaponType.valueOf(aux[0].toUpperCase()), Integer.parseInt(aux[1]), aux[2], Integer.parseInt(aux[3]), Integer.parseInt(aux[4]), Integer.parseInt(aux[5]), Integer.parseInt(aux[6]));
 				infoWeaponList.add(auxWeapon);
 				
 			}

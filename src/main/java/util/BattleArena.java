@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 
 import gui.Test;
 import source.Creature;
+import source.Enemy;
+import source.Hero;
 import source.TeamCreatures;
 
 public class BattleArena {
@@ -27,8 +29,8 @@ public class BattleArena {
 	
 	private List<Creature> listIniciative = new ArrayList<Creature>();
 		
-	private List<Creature> herosList = new ArrayList<Creature>();
-	private List<Creature> mobsList = new ArrayList<Creature>();
+	private List<Hero> herosList = new ArrayList<Hero>();
+	private List<Enemy> enemyList = new ArrayList<Enemy>();
 	
 	private int turn;
 	
@@ -41,7 +43,7 @@ public class BattleArena {
 	
 	//------------------------------Constructor------------------------------//
 	
-	public void CreateArena(TeamCreatures pHeros, TeamCreatures pMobs) {
+	public void CreateArena(Hero h1, Hero h2, Hero h3, Enemy e1, Enemy e2, Enemy e3) {
 	
 		this.finishGame = false;
 		this.turn = 0;
@@ -49,19 +51,25 @@ public class BattleArena {
 		this.objetiveMobs = 0;
 		this.switchRequest = false;
 		
-		for(int i = 0 ; i<3 ; i++) {
-			this.herosList.add(pHeros.getList()[i]);
-			this.mobsList.add(pMobs.getList()[i]);
-			listIniciative.add(pHeros.getList()[i]);
-			listIniciative.add(pMobs.getList()[i]);
-		}
-				
+		listIniciative.add(h1);
+		listIniciative.add(h2);
+		listIniciative.add(h3);
+		listIniciative.add(e1);
+		listIniciative.add(e1);
+		listIniciative.add(e1);
+		
+		herosList.add(h1);
+		herosList.add(h2);
+		herosList.add(h3);
+		
+		enemyList.add(e1);
+		enemyList.add(e2);
+		enemyList.add(e3);
+			
 		for (Creature c : listIniciative) {
-			c.rollIniciative();
+			UtilBattle.rollIniciative(0, c);
 		}
 		
-		herosList.sort(new IniciativeComparator());
-		mobsList.sort(new IniciativeComparator());
 		listIniciative.sort(new IniciativeComparator());
 		
 	}
@@ -82,12 +90,13 @@ public class BattleArena {
 	
 	//------------------------------Metodos------------------------------//
 	
+	/*
 	public String metodoSpriteBotonHero(int aux) {
 		return herosList.get(aux).getSprite();
 	}
 	
 	public String metodoSpriteBotonMob(int aux) {
-		return mobsList.get(aux).getSprite();
+		return enemyList.get(aux).getSprite();
 	}
 	
 	public void setSwingHero(JButton b, JPanel p, int aux) {
@@ -96,18 +105,19 @@ public class BattleArena {
 	}
 	
 	public void setSwingMob(JButton b, JPanel p, int aux) {
-		this.mobsList.get(aux).setBttn(b);
-		this.mobsList.get(aux).setPanel(p);
+		this.enemyList.get(aux).setBttn(b);
+		this.enemyList.get(aux).setPanel(p);
 	}
+	*/
 	
 	private boolean heroesAlive() {
-		if( herosList.get(0).alive() || herosList.get(1).alive() || herosList.get(2).alive() ) return true;
+		if( herosList.get(0).isAlive() || herosList.get(1).isAlive() || herosList.get(2).isAlive() ) return true;
 		
 		return false;
 	}
 	
 	private boolean mobsAlive() {
-		if( mobsList.get(0).alive() || mobsList.get(1).alive() || mobsList.get(2).alive() ) return true;
+		if( enemyList.get(0).isAlive() || enemyList.get(1).isAlive() || enemyList.get(2).isAlive() ) return true;
 		
 		return false;
 	}
@@ -116,9 +126,9 @@ public class BattleArena {
 		return "Fighter HP - " + herosList.get(0).getActualHp() +"/"+ herosList.get(0).getMaxHp()+"\n"+
 				"Ranger HP - " + herosList.get(1).getActualHp() +"/"+ herosList.get(1).getMaxHp()+"\n"+
 				"Cleric HP - " + herosList.get(2).getActualHp() +"/"+ herosList.get(2).getMaxHp()+"\n"+
-				"Zombie 1 HP - " + mobsList.get(0).getActualHp() +"/"+ mobsList.get(0).getMaxHp()+"\n"+
-				"Zombie 2 HP - " + mobsList.get(1).getActualHp() +"/"+ mobsList.get(1).getMaxHp()+"\n"+
-				"Zombie 3 HP - " + mobsList.get(2).getActualHp() +"/"+ mobsList.get(2).getMaxHp()+"\n";
+				"Zombie 1 HP - " + enemyList.get(0).getActualHp() +"/"+ enemyList.get(0).getMaxHp()+"\n"+
+				"Zombie 2 HP - " + enemyList.get(1).getActualHp() +"/"+ enemyList.get(1).getMaxHp()+"\n"+
+				"Zombie 3 HP - " + enemyList.get(2).getActualHp() +"/"+ enemyList.get(2).getMaxHp()+"\n";
 	}
 	
 	public void setObjetiveHeros(int i) {
@@ -130,11 +140,11 @@ public class BattleArena {
 	}
 	
 	public void markCreatureOnTurn() {
-		getCreatureOnTurn().markButton();
+		
 	}
 	
 	public void unmarkCreatureOnTurn() {
-		getCreatureOnTurn().unmarkButton();
+		
 	}
 	
 	public String getHpStringHero(int aux) {
@@ -148,11 +158,19 @@ public class BattleArena {
 	
 	public String getHpStringMob(int aux) {
 		switch (aux) {
-		case 1: return mobsList.get(0).getActualHp() +"/"+ mobsList.get(0).getMaxHp();
-		case 2:	return mobsList.get(1).getActualHp() +"/"+ mobsList.get(1).getMaxHp();
-		case 3:	return mobsList.get(2).getActualHp() +"/"+ mobsList.get(2).getMaxHp();
+		case 1: return enemyList.get(0).getActualHp() +"/"+ enemyList.get(0).getMaxHp();
+		case 2:	return enemyList.get(1).getActualHp() +"/"+ enemyList.get(1).getMaxHp();
+		case 3:	return enemyList.get(2).getActualHp() +"/"+ enemyList.get(2).getMaxHp();
 		}
 		return "";
+	}
+	
+	public String getNameHero(int i) {
+		return herosList.get(i-1).getClass().getSimpleName();
+	}
+	
+	public String getNameEnemy(int i) {
+		return enemyList.get(i-1).getClass().getSimpleName();
 	}
 	
 	public void changeRequest() {
@@ -195,6 +213,7 @@ public class BattleArena {
 
 	//----------------------------Turn-----------------------------//
 	
+	/*
 	public void endTurn() {
 		//variable para los monstruos
 		int aux = 0;
@@ -238,6 +257,7 @@ public class BattleArena {
 		markCreatureOnTurn();
 		
 	}
+	*/
 
 	//-----------------------GettersSetters------------------------//
 	
@@ -249,20 +269,20 @@ public class BattleArena {
 		this.listIniciative = listIniciative;
 	}
 
-	public List<Creature> getHeros() {
+	public List<Hero> getHeros() {
 		return herosList;
 	}
 
-	public void setHeros(List<Creature> heros) {
+	public void setHeros(List<Hero> heros) {
 		this.herosList = heros;
 	}
 
-	public List<Creature> getMobs() {
-		return mobsList;
+	public List<Enemy> getEnemies() {
+		return enemyList;
 	}
 
-	public void setMobs(List<Creature> mobs) {
-		this.mobsList = mobs;
+	public void setEnemy(List<Enemy> mobs) {
+		this.enemyList = mobs;
 	}
 
 	public boolean isFinishGame() {

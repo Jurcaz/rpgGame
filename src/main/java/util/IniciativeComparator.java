@@ -7,7 +7,7 @@ import source.Creature;
 public class IniciativeComparator implements Comparator<Creature> {
 
 	public int compare(Creature o1, Creature o2) {
-		return -1 * (Double.compare(o1.getIniciative(), o2.getIniciative()));
+		return -1 * (Double.compare(o1.getInitiative(), o2.getInitiative()));
 	}
 
 }

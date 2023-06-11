@@ -1,22 +1,16 @@
 package main;
 
-import java.awt.EventQueue;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 
-import creatures.Cleric;
-import creatures.Fighter;
-import creatures.Ranger;
-import creatures.Zombie;
+import creatures.Crusader;
 import gui.Test;
-import source.Creature;
-import source.TeamCreatures;
-import source.Weapon;
-import source.WeaponType;
+import persistence.DamageCSVImpl;
+import persistence.EffectCSVImpl;
+import persistence.HealCSVImpl;
+import source.*;
 import util.BattleArena;
 import util.Catalogue;
-import util.IniciativeComparator;
-import util.UtilBattle;
 
 public class Main {
 
@@ -24,32 +18,69 @@ public class Main {
 		
 		BattleArena ba = BattleArena.getInstance();
 		Catalogue cat = Catalogue.getInstance();
+		
+		cat.instanceCatalog();
+
+		Hero h1 = cat.getHero(HeroType.CRUSADER, 1);
+						
+		Hero h2 = cat.getHero(HeroType.HIGHWAYMAN, 1);
 			
-		cat.instanceCatalogue();
-		cat.instanceWeapon();
+		Hero h3 = cat.getHero(HeroType.VESTAL, 1);
+			
 		
-//		for (Weapon w: cat.getInfoWeaponList()) {
-//			System.out.println(w.toString());
+		Enemy e1 = new Enemy(EnemyType.BONESOLDIER, CategorieType.UNHOLY, 10, 0, 15, 2, 25, 20, 10, 200, 15, null, 0, true);
+		Enemy e2 = new Enemy(EnemyType.BONESOLDIER, CategorieType.UNHOLY, 10, 0, 15, 2, 25, 20, 10, 200, 15, null, 0, true);
+		Enemy e3 = new Enemy(EnemyType.BONESOLDIER, CategorieType.UNHOLY, 10, 0, 15, 2, 25, 20, 10, 200, 15, null, 0, true);
+		
+		ba.CreateArena(h1, h2, h3, e1, e2, e3);
+		
+//		Hero c1 = cat.getHero(HeroType.CRUSADER, 1);
+//		Hero h1 = cat.getHero(HeroType.HIGHWAYMAN, 1);
+//		Hero v1 = cat.getHero(HeroType.VESTAL, 1);
+//		
+//		c1.setAbility(cat.getDamage(DamageType.SMITE));
+//		c1.setAbility(cat.getDamage(DamageType.ZEALOUSACCUSATION));
+//		c1.setAbility(cat.getDamage(DamageType.STUNNINGBLOW));
+//		c1.setAbility(cat.getEffect(EffectType.BULWARKOFFAITH));
+//		
+//		h1.setAbility(cat.getDamage(DamageType.WICKEDSLICE));
+//		h1.setAbility(cat.getDamage(DamageType.OPENVEIN));
+//		h1.setAbility(cat.getDamage(DamageType.PISTOLSHOT));
+//		h1.setAbility(cat.getDamage(DamageType.GRAPESHOTBLAST));
+//		
+//		v1.setAbility(cat.getDamage(DamageType.JUDGEMENT));
+//		v1.setAbility(cat.getDamage(DamageType.DAZZLINGLIGHT));
+//		v1.setAbility(cat.getHeal(HealType.DIVINEGRACE));
+//		v1.setAbility(cat.getHeal(HealType.DIVINECOMFORT));
+		
+//		for (Hero h : cat.getHeroList()) {
+//			System.out.println(h.toString());
 //		}
-		
-		System.out.println(cat.getWeapon(WeaponType.MACE, 3));
-		
-		Creature f1 = cat.getCreature("Fighter");
-		Creature r1 = cat.getCreature("Ranger");
-		Creature c1 = cat.getCreature("Cleric");
-		
-		Creature z1 = new Zombie();
-		Creature z2 = new Zombie();
-		Creature z3 = new Zombie();
-		
-		ba.CreateArena(new TeamCreatures(f1,r1,c1),	new TeamCreatures(z1,z2,z3));
+//		
+//		System.out.println(cat.getHero(HeroType.VESTAL, 2));
+//		
+//		for (Armor a : cat.getArmorList()) {
+//			System.out.println(a.getName());
+//		}
+//		
+//		System.out.println(cat.getArmor(ArmorType.CHAINANDPLATE, 3));
+//		
+//		for (Weapon w: cat.getWeaponList()) {
+//			System.out.println(w.getName());
+//		}
+//		
+//		System.out.println(cat.getWeapon(WeaponType.GREATSWORD, 4));
+//	
+//		for (Damage d : cat.getDamageList()) {
+//			System.out.println(d.getSkillName());
+//		}
+//		
+//		System.out.println(cat.getDamage(DamageType.SMITE).getSkillName());
+				
+//		ba.CreateArena(new TeamCreatures(new Fighter(),new Ranger(),new Cleric()),	new TeamCreatures(new Zombie(),new Zombie(),new Zombie()));
 		
 		Test windowBattle = new Test();
 		windowBattle.setVisible(true);
-		
-		//ba.showHeroesList();
-		//ba.showMobsList();
-		//System.out.println("Fighter HP - " + f1.getActualHp() +"/"+ f1.getMaxHp()+"\n"+"Ranger HP - " + r1.getActualHp() +"/"+ r1.getMaxHp()+"\n"+"Cleric HP - " + c1.getActualHp() +"/"+ c1.getMaxHp()+"\n"+"Zombie 1 HP - " + z1.getActualHp() +"/"+ z1.getMaxHp()+"\n"+"Zombie 2 HP - " + z2.getActualHp() +"/"+ z2.getMaxHp()+"\n"+	"Zombie 3 HP - " + z3.getActualHp() +"/"+ z3.getMaxHp()+"\n");		
 		
 	}
 }
